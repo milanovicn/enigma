@@ -49,4 +49,15 @@ public class TermController {
         }
 
     }
+
+    @PutMapping(value = "")
+    public ResponseEntity<?> updateTerm(@RequestBody TermDTO termDTO, @Context HttpServletRequest request) {
+        boolean created = termService.updateTerm(termDTO);
+        if(created) {
+            return new ResponseEntity<>("{\"response\":\"Term updated successfully\", \"status\":\"true\"}", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("{\"response\":\"Error! Term with this name already exists\" ,\"status\":\"false\"}", HttpStatus.OK);
+        }
+
+    }
 }
