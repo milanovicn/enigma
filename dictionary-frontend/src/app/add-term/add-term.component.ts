@@ -100,16 +100,14 @@ export class AddTermComponent implements OnInit {
 
     console.log(JSON.stringify(this.term).toString())
 
-    let responseMess;
-
     this.appService.createTerm(this.term).subscribe(
       {
         next: data => {
-            if (data["response"] == "Term saved successfully"){
+            if (data["status"] == "true"){
               alert(data["response"])
               this.router.navigate(['/start-page'])
             }
-            else if (data["response"] == "Term wasn't saved"){
+            else if (data["status"] == "false"){
               alert(data["response"])
             }
         },

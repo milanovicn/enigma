@@ -33,7 +33,6 @@ export class AppComponent implements OnInit{
   }
 
 
-
   SignOut(){
     // session ??
     this.appService.getSession().subscribe({
