@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -77,9 +78,11 @@ public class TermServiceImpl implements TermService {
 
     @Override
     public boolean deleteTerm(Integer termId) {
-        Optional<Term> t =  termRepository.findById(termId.longValue());
-        em.remove(t);
-        if(termRepository.findById(termId.longValue())==null){
+        if(termRepository.findTermById(termId.longValue()) != null)
+            termRepository.deleteTermById(termId.longValue());
+        else
+            return false;
+        if(termRepository.findTermById(termId.longValue()) == null){
             return true;
         } else {
             return false;
