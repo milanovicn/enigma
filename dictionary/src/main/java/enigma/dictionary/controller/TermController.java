@@ -39,9 +39,9 @@ public class TermController {
 
     }
 
-    @DeleteMapping(value = "")
-    public ResponseEntity<?> deleteTerm(@RequestBody Integer teamId, @Context HttpServletRequest request) {
-        boolean deleted = termService.deleteTerm(teamId);
+    @DeleteMapping(value = "/{termId}")
+    public ResponseEntity<?> deleteTerm(@Context HttpServletRequest request, @PathVariable("termId") Integer termId) {
+        boolean deleted = termService.deleteTerm(termId);
         if(deleted) {
             return new ResponseEntity<>("{\"response\":\"Term removed\", \"status\":\"true\"}", HttpStatus.OK);
         } else {
