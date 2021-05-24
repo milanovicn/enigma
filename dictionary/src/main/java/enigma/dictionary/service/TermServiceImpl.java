@@ -90,6 +90,28 @@ public class TermServiceImpl implements TermService {
     }
 
     @Override
+    public boolean updateTerm(TermDTO termDTO) {
+        Term term= termRepository.findById(termDTO.getTerm_ID()).orElseGet(null);
+        term.setDescription(termDTO.getDescription());
+        term.setDetails(termDTO.getDetails());
+        term.setTitle(termDTO.getTitle());
+        term.setTeam(teamService.transformToModel(termDTO.getTeam()));
+        List<Tag> tags = new ArrayList<Tag>();
+        for(TagDTO tag : termDTO.getTags()) {
+            Tag a = tagService.transformToModel(tag);
+            tags.add(a);
+        }
+
+        List<Term> checkList=termRepository.findForUpdate(term.getTitle(), term.getTermID());
+        if (checkList==null || checkList.size()==0){
+
+            termRepository.save(term);
+            return true;
+        }
+        else return false;
+    }
+
+    @Override
     public TermDTO transformToDTO(Term term) {
         TeamDTO teamDTO = teamService.transformToDTO(term.getTeam());
         TermDTO termDTO = new TermDTO(term.getTermID(),term.getTitle(), term.getDescription(), term.getDetails(), teamDTO);

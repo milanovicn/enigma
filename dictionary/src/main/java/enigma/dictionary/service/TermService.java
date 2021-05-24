@@ -17,5 +17,6 @@ public interface TermService {
     public List<Term> getByTeam(Team team);
     public boolean createTerm(TermDTO termDTO);
     public boolean deleteTerm(Integer termId);
+    public boolean updateTerm(TermDTO termDTO);
 
 }

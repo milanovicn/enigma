@@ -6,13 +6,15 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
+import java.util.List;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
 public interface TermRepository extends JpaRepository<Term, Long> {
 
     Term findTermByTitle(String title);
+    @Query("SELECT t FROM Term t WHERE LOWER(t.title) = LOWER(:title) AND NOT t.term_ID=:id")
+    public List<Term> findForUpdate(@Param("title") String title, @Param("id") Long id);
 
     @Transactional
     @Modifying
