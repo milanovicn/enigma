@@ -57,7 +57,21 @@
             </label>
           </ng-container>
         </div>
+      </div>
 
+      <div class="form-label">
+        <p>Pick tag relevant for the term
+          <label *ngIf = "myform.submitted && tag_val.length == 0">*required</label>
+        </p>
+
+        <div class="pick-tags">
+          <ng-container *ngFor = "let tag of tags; index as i">
+            <label for="tag_{{i}}">
+              <input type="checkbox" value={{tag}} id="tag_{{i}}" name="tag{{i}}" (change)="changeSelection(i)" required>
+              <div class="tag">{{tag.name}}</div>
+            </label>
+          </ng-container>
+        </div>
       </div>
 
       <div class="form-label">
