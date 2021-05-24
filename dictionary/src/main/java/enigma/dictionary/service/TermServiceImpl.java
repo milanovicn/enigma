@@ -61,7 +61,7 @@ public class TermServiceImpl implements TermService {
         t.setTags(tags);
         t.setTeam(teamService.transformToModel(termDTO.getTeam()));
         t.setTitle(termDTO.getTitle());
-        if (!termRepository.findTermByTitle(t.getTitle())){
+        if (termRepository.findTermByTitle(t.getTitle())==null){
 
             termRepository.save(t);
             return true;

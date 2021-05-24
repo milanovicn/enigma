@@ -31,13 +31,13 @@ public class TermController {
         return new ResponseEntity< ArrayList<TermDTO>>(termsDTO, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/createTerm")
+    @PostMapping(value = "")
     public ResponseEntity<?> createTerm(@RequestBody TermDTO termDTO, @Context HttpServletRequest request) {
         boolean created = termService.createTerm(termDTO);
         if(created) {
             return new ResponseEntity<>("{\"response\":\"Term saved successfully\", \"status\":\"true\"}", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("{\"response\":\"Term wasn't saved\" ,\"status\":\"false\"}", HttpStatus.OK);
+            return new ResponseEntity<>("{\"response\":\"Error! Term with this name already exists\" ,\"status\":\"false\"}", HttpStatus.OK);
         }
 
     }

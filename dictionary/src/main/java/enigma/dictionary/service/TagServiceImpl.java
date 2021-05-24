@@ -49,8 +49,11 @@ public class TagServiceImpl implements TagService {
     public boolean createTag(TagDTO tagDTO) {
         Tag t = new Tag();
         t.setName(tagDTO.getName());
-        tagRepository.save(t);
-        return tagRepository.findById(t.getTag_ID()).isPresent();
+
+        if(tagRepository.findTagByName(tagDTO.getName())==null){
+            tagRepository.save(t);
+            return true;
+        } else return false;
     }
 
 

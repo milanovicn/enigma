@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface TermRepository extends JpaRepository<Term, Long> {
 
-    boolean findTermByTitle(String title);
+    Term findTermByTitle(String title);
 
 
 }
