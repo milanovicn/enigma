@@ -1,9 +1,6 @@
 package enigma.dictionary.controller;
 
-import enigma.dictionary.dto.LoginRequest;
-import enigma.dictionary.dto.TeamDTO;
 import enigma.dictionary.dto.TermDTO;
-import enigma.dictionary.model.Team;
 import enigma.dictionary.model.Term;
 import enigma.dictionary.service.TermService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +35,17 @@ public class TermController {
             return new ResponseEntity<>("{\"response\":\"Term saved successfully\", \"status\":\"true\"}", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("{\"response\":\"Term wasn't saved\" ,\"status\":\"false\"}", HttpStatus.OK);
+        }
+
+    }
+
+    @DeleteMapping(value = "")
+    public ResponseEntity<?> deleteTerm(@RequestBody Integer teamId, @Context HttpServletRequest request) {
+        boolean deleted = termService.deleteTerm(teamId);
+        if(deleted) {
+            return new ResponseEntity<>("{\"response\":\"Term removed\", \"status\":\"true\"}", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("{\"response\":\"Term wasn't removed\" ,\"status\":\"false\"}", HttpStatus.OK);
         }
 
     }

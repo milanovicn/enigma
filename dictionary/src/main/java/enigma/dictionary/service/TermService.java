@@ -16,5 +16,6 @@ public interface TermService {
     public Term transformToModel(TermDTO termDTO);
     public List<Term> getByTeam(Team team);
     public boolean createTerm(TermDTO termDTO);
+    public boolean deleteTerm(Integer termId);
 
 }

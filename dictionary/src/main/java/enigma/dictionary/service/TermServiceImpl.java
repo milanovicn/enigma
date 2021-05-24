@@ -10,8 +10,10 @@ import enigma.dictionary.repository.TermRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TermServiceImpl implements TermService {
@@ -22,6 +24,9 @@ public class TermServiceImpl implements TermService {
     private TeamService teamService;
     @Autowired
     private TagService tagService;
+
+    @Autowired
+    private EntityManager em;
 
     @Override
     public List<Term> getAll() {
@@ -68,6 +73,17 @@ public class TermServiceImpl implements TermService {
         }
         else return false;
 
+    }
+
+    @Override
+    public boolean deleteTerm(Integer termId) {
+        Optional<Term> t =  termRepository.findById(termId.longValue());
+        em.remove(t);
+        if(termRepository.findById(termId.longValue())==null){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
