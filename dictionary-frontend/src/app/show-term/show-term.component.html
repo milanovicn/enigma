@@ -1,0 +1,74 @@
+<div class="content" id="content" role="main">
+
+  <div class="top-container" id="top-container">
+    <div class="top-container-item left">
+      <img
+        width="170px"
+        height="auto"
+        alt="FIS Logo"
+        src="../assets/fisdictlog.png"
+      />
+      <h1>Welcome to FIS Dictionary</h1>
+    </div>
+    <div class="top-container-item middle">
+      <h2>This is FIS Dictionary</h2>
+      <br>
+      <h3>Innovate In 48</h3>
+      <h3>Enigma team</h3>
+    </div>
+    <div class="right">
+      <div class="top-container-right-item" (click)="NavigateToAddTerm()">
+        <h3><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new term!</h3>
+      </div>
+      <div *ngIf="true" class="top-container-right-item" (click)="NavigateToAddTag()">
+        <h3><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new tag!</h3>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card-container" id="main-card-container">
+
+    <div id="usefull-links">
+      <div class="container-name title">
+        <h2 style="color: black;"><i>FIS Dictionary </i><b>{{term.title}}</b></h2>
+        <p><i>Term pubished by User.. 2021/05/11</i></p>
+      </div>
+      <div class="container-name short-desc">
+        <h3>{{term.description}}</h3>
+      </div>
+    </div>
+
+    <div class="card-container card left-panel">
+      <div class="container-name">
+        <h3>Detailed explanation</h3>
+        <br>
+        <p class="white">{{term.details}}</p>
+      </div>
+    </div>
+
+    <div class="card-container card right-panel">
+      <div class="container-name">
+        <h3>Images</h3>
+        <h3>Links</h3>
+      </div>
+      <div class="container-name">
+        <h3>Images</h3>
+        <h3>Links</h3>
+      </div>
+    </div>
+
+    <div class="other-terms">
+      {{term.team.name}}
+    </div>
+    <div class="other-terms" *ngFor = "let tag of term.tags">
+      {{tag.name}}
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+  <a>FIS Dictionary</a>
+</footer>
+<router-outlet></router-outlet>

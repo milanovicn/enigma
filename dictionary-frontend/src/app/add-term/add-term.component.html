@@ -1,0 +1,74 @@
+<div class="content" id="content" role="main">
+
+  <div class="top-container" id="top-container">
+    <div class="top-container-item left">
+      <img
+        width="170px"
+        height="auto"
+        alt="FIS Logo"
+        src="../assets/fisdictlog.png"
+      />
+      <h1>Welcome to FIS Dictionary</h1>
+    </div>
+    <div class="top-container-item right">
+      <h2>This is FIS Dictionary</h2>
+      <br>
+      <h3>Innovate In 48</h3>
+      <h3>Enigma team</h3>
+    </div>
+  </div>
+
+  <div class="card-container" id="main-card-container">
+
+    <div class="form-label transparent">
+      <h3>Add New Term</h3>
+    </div>
+
+    <form class="form" #myform='ngForm'>
+      <div class="form-label">
+        <p>Name for new term <label *ngIf = "myform.submitted && (term_name==undefined || term_name=='')">*required</label></p>
+        <input type="text" spellcheck="false" placeholder="Term name" class="text-input" name="term_name" [(ngModel)]=term_name required>
+      </div>
+
+      <div class="form-label">
+        <p>Short description
+          <label *ngIf = "myform.submitted && (short_description==undefined || short_description=='')">*required</label>
+        </p>
+        <input type="text" spellcheck="false" placeholder="Term name" class="text-input" name="short_description" [(ngModel)]=short_description required>
+      </div>
+
+      <div class="form-label">
+        <p>Detailed description
+          <label *ngIf = "myform.submitted && (detail_description==undefined || detail_description=='')">*required</label>
+        </p>
+        <textarea spellcheck="false" placeholder="Detailed description of the term" class="text-area-input" name="detail_description" [(ngModel)]=detail_description required></textarea>
+      </div>
+
+      <div class="form-label">
+        <p>Pick tag relevant for the term
+          <label *ngIf = "myform.submitted && tag_val.length == 0">*required</label>
+        </p>
+
+        <div class="pick-tags">
+          <ng-container *ngFor = "let tag of tags; index as i">
+            <label for="tag_{{i}}">
+              <input type="checkbox" value={{tag}} id="tag_{{i}}" name="tag{{i}}" (change)="changeSelection(i)" required>
+              <div class="tag">{{tag.name}}</div>
+            </label>
+          </ng-container>
+        </div>
+
+      </div>
+
+      <div class="form-label">
+        <input type="submit" (click)="SaveItem()" value="Submit" class="submit-btn" >
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+  <a>FIS Dictionary</a>
+</footer>
+<router-outlet></router-outlet>

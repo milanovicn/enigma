@@ -1,0 +1,179 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+  color: white;
+}
+
+p {
+  font-size: larger;
+  font-weight: 500;
+  margin: 0;
+}
+
+label{
+  font-size: 14px;
+  padding-left: 10px;
+  font-style: italic;
+  color: #ce1e1e;
+}
+
+.white {
+  color: white;
+}
+
+.content {
+  padding: 60px 0 0 0;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../../assets/login-bkgd.jpg");
+  background-position-x: center;
+  background-size: cover;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.top-container {
+  background-color: #08283a;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  padding: 20px 0 50px 0;
+  align-items: center;
+  z-index: 15;
+}
+
+.form {
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.left {
+  width: 30%;
+  padding: 0 20px;
+  border-right: 0.5px white solid;
+}
+
+.right {
+  padding: 0 20px;
+  width: 70%;
+}
+
+#main-card-container {
+  width: 500px;
+  min-width: 450px;
+}
+
+.form-label {
+  width: 100%;
+  padding: 20px 20px 0 10px;
+}
+
+.top-label {
+  padding: 20px;
+  background-color: #dfc6bc3d;
+}
+
+.text-input {
+  text-decoration: none;
+  outline: none;
+  border: 0.5px solid black;
+  margin: 10px 0;
+  width: 100%;
+  min-width: 250px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #222222;
+  border: 1px solid #a6a6a6;
+  border-radius: 0;
+  cursor: text;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  column-count: initial !important;
+}
+
+.submit-btn {
+  margin: 20px 8px;
+  padding: 10px;
+  width: 200px;
+  border-radius: 4px;
+  border: 0.5px solid;
+  background-color: #0c4c5788;
+  color: white;
+  margin-left: 50%;
+}
+
+.submit-btn:hover, .submit-btn:active{
+  background-color: #0c4c57;
+
+}
+
+
+a,
+a:visited,
+a:hover {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #125699;
+}
+
+footer {
+  padding: 20px 0 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 20px;
+  background-color: #051f22;
+  width: 100%;
+  bottom: 0;
+}
+
+footer a {
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+  .card-container > *:not(.circle-link) ,
+  .terminal {
+    width: 100%;
+  }
+
+  .card-small {
+    width: 30%;
+  }
+
+  .card.highlight-card span {
+    margin-left: 72px;
+  }
+
+  .right {
+    width: 100%;
+  }
+
+  .left {
+    width: 100%;
+    border: none;
+  }
+
+  .hide {
+    display: none;
+  }
+}
+

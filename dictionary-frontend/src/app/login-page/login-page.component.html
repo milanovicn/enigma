@@ -1,0 +1,50 @@
+<div class="content" id="content" role="main">
+<!--
+  <div class="top-container" id="top-container">
+    <div class="top-container-item left">
+      <img
+        width="170px"
+        height="auto"
+        alt="FIS Logo"
+        src="../assets/fisdictlog.png"
+      />
+      <h1>Welcome to FIS Dictionary</h1>
+    </div>
+    <div class="top-container-item right">
+      <h2>This is FIS Dictionary</h2>
+      <br>
+      <h3>Innovate In 48</h3>
+      <h3>Enigma team</h3>
+    </div>
+  </div>
+-->
+  <div class="card-container" id="main-card-container">
+    <form class="form" #myform='ngForm'>
+      <div class="form-label top-label">
+        <p> User login</p>
+      </div>
+
+      <div class="form-label">
+        <p>Username <label *ngIf = "myform.submitted && (username==undefined || username=='')">*required</label></p>
+        <input type="text" spellcheck="false" placeholder="Username" class="text-input" name="username" [(ngModel)]=username required>
+      </div>
+
+      <div class="form-label">
+        <p>Password
+          <label *ngIf = "myform.submitted && (password==undefined || password=='')">*required</label>
+        </p>
+        <input type="password" spellcheck="false" placeholder="Password" class="text-input" name="password" [(ngModel)]=password required>
+      </div>
+
+      <div class="form-label">
+        <input type="submit" (click)="SignIn()" value="Sign in" class="submit-btn" >
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+  <a>FIS Dictionary</a>
+</footer>
+<router-outlet></router-outlet>

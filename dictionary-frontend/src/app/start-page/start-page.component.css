@@ -1,0 +1,382 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+  color: white;
+}
+
+p {
+  margin: 0;
+}
+
+.white {
+  color: white;
+}
+
+.content {
+  display: flex;
+  margin: 250px 0 0 0;
+  padding: 60px 0 0 0;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../../assets/bg1.png");
+  background-position-x: center;
+}
+
+.top-container {
+  background-color: #08283a;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  position: fixed;
+  top: 60px;
+  padding: 20px 0 50px 0;
+  align-items: center;
+  z-index: 15;
+}
+
+.left {
+  width: 30%;
+  padding: 0 20px;
+  border-right: 0.5px white solid;
+}
+
+.middle {
+  padding: 0 20px;
+  width: calc(70% - 250px);
+}
+
+.right {
+  margin-bottom: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 230px;
+}
+
+.top-container-right-item {
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 4px;
+  margin-right: 20px;
+  text-align: center;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+  padding: 5px;
+  width: 100%;
+}
+
+.top-container-right-item:hover{
+  border: 1px solid #4acd3e;
+}
+
+.top-container-right-item:active{
+  background-color: #4acd3e;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.container-name {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px 10px 10px;
+}
+
+.alphas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.start_letter {
+  width: 100%;
+  display: block;
+  color: white;
+  padding: 10px;
+  font-size: 25px;
+  font-weight: 900;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.692);
+}
+
+.line {
+  color: white;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.692);
+  padding-top: 10px;
+}
+
+.card {
+  height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  line-height: 24px;
+}
+
+.card-small {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  background-color: #fafafa;
+  transition: all 0.2s ease-in-out;
+  margin: 0 8px 16px;
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+}
+
+.fisteams {
+  width: 35%;
+  padding-right: 10%;
+}
+
+.fis_teams {
+  width: 100%;
+  background-color: rgba(8, 40, 58, 0.725);
+  border: none;
+  padding: 10px;
+  border: 0.5px solid #08283ab9;
+  cursor: pointer;
+}
+
+.hide_team {
+  display: none;
+}
+
+.finterms {
+  width: 65%;
+  padding-left: 10%;
+}
+
+#all_letters {
+  padding: 20px 10% 20px 10%;
+  background-color: white;
+  border: none;
+  height: auto;
+  width: 100%;
+}
+
+#all_tags {
+  background-color: white;
+  border: none;
+  height: auto;
+  width: 100%;
+  padding: 20px;
+}
+
+.show_all {
+  width: 200px;
+  background-color: #4acd3e;
+  color: white;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  padding: 5px;
+  margin-left: calc(50% - 100px);
+  text-align: center;
+}
+
+.show_all:hover {
+  background-color: #2f8527;
+}
+
+.links {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  align-self: center;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  margin: 0 4px 8px;
+  z-index: 0;
+  background-color: #4acd3e;
+  color: white;
+  display: inline-block;
+  padding: 5px;
+}
+
+.tags{
+  height: 40px;
+  min-width: 120px;
+  width: auto;
+  text-align: center;
+  align-self: center;
+  margin: 0 4px 8px;
+  background-color: #134757;
+  color: white;
+  padding: 8px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 15px;
+}
+
+.tags:hover{
+  background-color: #0d2e38;
+}
+
+.clicked, .tags:hover {
+  background-color: #2f8527;
+}
+
+
+
+.links:hover {
+  background-color: #2f8527;
+}
+.links:active {
+  background-color: #2f8527;
+}
+
+.card-container .card:not(:last-child) {
+  margin-right: 0;
+}
+
+
+.card.card-icon {
+  border: 1px solid #eee;
+  background-color: #fafafa;
+  transition: all 0.2s ease-in-out;
+}
+
+.card-small.fis_teams:hover {
+  border: 0.5px solid #077563d8;
+}
+.card-finterms {
+  width: 150px;
+  min-height: 60px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.card-finterms:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  /*font-weight: bolder;*/
+}
+
+.card-small.sub_team:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}
+
+.card-container .card:not(.highlight-card):hover .material-icons path {
+  fill: rgb(105, 103, 103);
+}
+
+.search_class{
+  border: none;
+  margin: 10px 10px;
+}
+
+#search_terms_id{
+  padding: 0 5px 0 5px;
+  width: 200px;
+  outline-style: none;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.781);
+}
+
+#search_terms_id:active{
+  outline: none;
+}
+
+#search_terms_id:focus{
+  outline-style: none;
+  background-color: white;
+}
+
+a,
+a:visited,
+a:hover {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #125699;
+}
+
+
+footer {
+  padding: 20px 0 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 20px;
+  background-color: #051f22;
+  width: 100%;
+  bottom: 0;
+}
+
+footer a {
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+  .top-container {
+    position: absolute;
+    margin-bottom: 30px;
+  }
+
+  .card-container > *:not(.circle-link) ,
+  .terminal {
+    width: 100%;
+  }
+
+  .card-small {
+    width: 30%;
+  }
+
+  .right {
+    margin-bottom: 0;
+    margin-left: calc(100% - 250px);
+    text-align: center;
+  }
+
+  .middle {
+    width: 100%;
+  }
+
+  .left {
+    width: 100%;
+    border: none;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .finterms, .fisteams {
+    padding: 10px;
+  }
+
+}
+
+/* Responsive Styles */
+@media screen and (max-height: 767px) {
+
+  .top-container {
+    position: absolute;
+    margin-bottom: 30px;
+  }
+
+}

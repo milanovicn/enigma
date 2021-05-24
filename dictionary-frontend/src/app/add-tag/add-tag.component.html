@@ -1,0 +1,53 @@
+<div class="content" id="content" role="main">
+
+  <div class="top-container" id="top-container">
+    <div class="top-container-item left">
+      <img
+        width="170px"
+        height="auto"
+        alt="FIS Logo"
+        src="../assets/fisdictlog.png"
+      />
+      <h1>Welcome to FIS Dictionary</h1>
+    </div>
+    <div class="top-container-item right">
+      <h2>This is FIS Dictionary</h2>
+      <br>
+      <h3>Innovate In 48</h3>
+      <h3>Enigma team</h3>
+    </div>
+  </div>
+
+  <div class="card-container" id="main-card-container">
+
+    <div class="form-label transparent">
+      <h3>Add New Tag</h3>
+      <h5><i>Admin only</i></h5>
+    </div>
+
+    <form class="form" #myform='ngForm'>
+      <div class="form-label">
+        <p>Name for new tag <label *ngIf = "myform.submitted && (tag_name==undefined || tag_name=='')">*required</label></p>
+        <input type="text" spellcheck="false" placeholder="Tag name" class="text-input" name="tag_name" [(ngModel)]=tag_name required>
+      </div>
+
+      <div class="form-label">
+        <input type="submit" (click)="SaveTag()" value="Submit" class="submit-btn" >
+      </div>
+
+
+      <div class="form-label">
+        <p style="color: #333; font-weight: normal; font-style: normal; font-size: 14px;">Existing tags</p>
+        <div class="pick-tags">
+          <div *ngFor = "let tag of tags; index as i" class="tag">{{tag.name}}</div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+  <a>FIS Dictionary</a>
+</footer>
+<router-outlet></router-outlet>

@@ -1,0 +1,17 @@
+<!-- Toolbar Header-->
+<div class="toolbar" id="toolbar" role="banner">
+  <img
+    width="60"
+    alt="FIS Logo"
+    src="../assets/fislogo.png"
+  />
+  <span style="font-size: 20px;">| FIS Dictionary</span>
+    <div class="spacer"></div>
+    <a *ngIf="Show(this)" style="color: white; margin-right: 20px; cursor: pointer;" (click)="SignOut()">
+      <i class="fa fa-sign-out" style="padding-right: 5px; font-size: 15px;" aria-hidden="true"></i>
+      Logout
+    </a>
+</div>
+
+
+<router-outlet></router-outlet>

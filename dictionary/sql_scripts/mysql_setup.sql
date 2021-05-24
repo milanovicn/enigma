@@ -1,0 +1,4 @@
+CREATE DATABASE dictionary;
+CREATE USER 'enigma'@'localhost' IDENTIFIED BY 'enigma123';
+GRANT ALL PRIVILEGES ON *.* TO 'enigma'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
