@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TagDTO } from '../_shared/dto/TagDTO';
 import { TeamDTO } from '../_shared/dto/TeamDTO';
 import { TermDTO } from '../_shared/dto/TermDTO';
+import { UserDTO } from '../_shared/dto/UserDTO';
 import { AppService } from '../_shared/services/appService.service';
 
 @Component({
@@ -25,19 +26,21 @@ export class StartPageComponent implements OnInit {
   // for showing details
   picked_team: TeamDTO
 
+  user: UserDTO
+
   constructor(private router: Router, private appService: AppService) {
-    this.letters = new Array<string>();
-
+    this.letters = new Array<string>()
     this.fin_terms_list = new Array<TermDTO>()
-    this.getUser()
-
     for(var i = 0; i < 26; i++){
       this.letters.push(String.fromCharCode(65 + i)) // 'A' + i
     }
   }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.loadTags()
   }
+
   ngAfterViewInit (){
     this.ClickOnLetter(-1)
     this.onWindowResize()
@@ -218,6 +221,7 @@ export class StartPageComponent implements OnInit {
   }
 
   NavigateToAddTerm(){
+    localStorage.setItem('term_for_update', JSON.stringify(null))
     this.router.navigate(['/add-term'])
   }
 
@@ -258,10 +262,17 @@ export class StartPageComponent implements OnInit {
 
   getUser() {
     this.appService.getSession().subscribe(
-      result => this.loadTags(),
-      error => this.router.navigate(['/login-page']),
+      {
+        next: user => {
+            this.user = user
+            this.loadTags()
+            console.log(user)
+        },
+        error: error => {
+          this.router.navigate(['/login-page'])
+        }
+    }
     );
   }
-
 
 }

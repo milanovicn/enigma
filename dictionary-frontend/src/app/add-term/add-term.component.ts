@@ -18,21 +18,34 @@ export class AddTermComponent implements OnInit {
   term_name: string
   short_description: string
   detail_description: string
-  tag_checked: Array<boolean>   // tagID
-  tag_val: Array<TagDTO>   // tagID
-  team: TeamDTO    // teamID
+
+  team: TeamDTO             // teamID
+  teams: TeamDTO[] = []     // teamID
   tags: Array<TagDTO>
 
+  picked_tag: string = ""
+  picked_tags: Array<TagDTO>
+
+  user_team: boolean = false
   term: TermDTO
   user: UserDTO
+  term_update: TermDTO
+
+  action_title: string = "Submit"
 
   constructor(private router: Router, private appService: AppService) {
-    this.tag_val = new Array<TagDTO>()
     this.tags = new Array<TagDTO>()
+    this.picked_tags = new Array<TagDTO>()
+
+    this.term_update = <TermDTO>(JSON.parse(localStorage.getItem('term_for_update')))
+    console.log(this.term_update)
+
   }
 
   ngOnInit() {
     this.loadTags()
+    this.loadTeams()
+    this.getUser()
     this.onWindowResize()
   }
 
@@ -45,29 +58,33 @@ export class AddTermComponent implements OnInit {
     document.getElementById("content").style.minHeight = window.innerHeight - this.height + "px";
   }
 
-  SaveItem(){
-    for(let v = 0; v < this.tag_val.length; v++){
-      console.log(this.tag_val[v].name)
+  setValues(){
+    this.action_title = "Update"
+    this.user_team = this.term_update.team.name == 'General'
+    this.term_name = this.term_update.title
+    this.detail_description = this.term_update.details
+    this.short_description = this.term_update.description
+    this.picked_tags = this.term_update.tags
+    for(let i = 0; i < this.tags.length; i++){
+      for(let ii = 0; ii < this.picked_tags.length; ii++){
+        if (this.tags[i].name == this.picked_tags[ii].name){
+          this.tags.splice(i,1)
+          break
+        }
+      }
     }
-    if (!this.term_name || !this.detail_description || !this.short_description || this.tag_val.length == 0){
+  }
+
+  SaveItem(){
+
+    if (!this.term_name || !this.detail_description || !this.short_description){
       return // all fields are required
     }
 
-    this.submitTerm()
+    if (this.term_update != null) this.updateTerm()
+    else this.submitTerm()
 
   }
-
-  changeSelection(i) {
-    this.tag_checked[i] = !this.tag_checked[i]
-    this.fetchSelectedItems()
-  }
-
-  fetchSelectedItems() {
-    this.tag_val = this.tags.filter((value, index) => {
-      if(this.tag_checked[index]) return value
-    });
-  }
-
 
   alertError(){
     alert("Wrong credentials! Try again")
@@ -76,6 +93,28 @@ export class AddTermComponent implements OnInit {
   alertSuccess() {
     alert("Term added!")
     this.router.navigate(['/start-page'])
+  }
+
+  updateTerm() {
+    let t = this.user_team ? this.teams[0] : this.user.team
+    this.term = new TermDTO(this.term_name, this.short_description, this.detail_description, this.term_update.term_ID, t, this.picked_tags)
+
+    this.appService.updateTerm(this.term).subscribe(
+      {
+        next: data => {
+            if (data["status"] == "true"){
+              alert(data["response"])
+              this.router.navigate(['/start-page'])
+            }
+            else if (data["status"] == "false"){
+              alert(data["response"])
+            }
+        },
+        error: error => {
+            console.error('There was an error!', error.message);
+        }
+      }
+    );
   }
 
   submitTerm() {
@@ -89,14 +128,31 @@ export class AddTermComponent implements OnInit {
   }
 
   getUser(){
-    this.appService.getSession().subscribe(
-      result => {},
-      error => this.router.navigate(['/login-page'])
-    );
+    this.appService.getSession().subscribe({
+      next: user => {
+          this.user = user;
+          console.log("User " + user.name + " is adding term...")
+      }
+    });
+  }
+
+  loadTeams(){
+    this.appService.getTeams().subscribe({
+      next: teams => {
+        this.teams = teams;
+        if (this.term_update != null) this.setValues()
+      }
+    });
+  }
+
+  clickCheckbox(){
+    document.getElementById("check-box").click()
   }
 
   createNewTerm() {
-    this.term = new TermDTO(this.term_name, this.short_description, this.detail_description, -1, this.user.team, this.tag_val)
+
+    let team = this.user_team ? this.teams[0] : this.user.team
+    this.term = new TermDTO(this.term_name, this.short_description, this.detail_description, -1, team, this.picked_tags)
 
     console.log(JSON.stringify(this.term).toString())
 
@@ -122,9 +178,32 @@ export class AddTermComponent implements OnInit {
     this.appService.getTags().subscribe({
       next: tags => {
         this.tags = tags;
-        this.tag_checked = new Array(this.tags.length).fill(false)
       }
     });
   }
 
+  clickedOption(){
+    console.log(this.picked_tag)
+    let n = 0
+    for (let i = 0; i < this.tags.length; i++){
+      if (this.tags[i].name == this.picked_tag){
+        n = i
+        this.picked_tags.push(this.tags[i])
+      }
+    }
+    console.log(n)
+    this.tags.splice(n, 1)
+    console.log(this.picked_tag)
+  }
+
+  getPickedTags(){
+    return this.picked_tags
+  }
+
+  removePickedTag(i){
+    this.tags.push(this.picked_tags[i])
+    this.picked_tags.splice(i, 1)
+    this.picked_tag = ""
+  }
 }
+

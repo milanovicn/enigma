@@ -21,7 +21,7 @@
       <div class="top-container-right-item" (click)="NavigateToAddTerm()">
         <h3><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new term!</h3>
       </div>
-      <div *ngIf="true" class="top-container-right-item" (click)="NavigateToAddTag()">
+      <div *ngIf="user.admin" class="top-container-right-item" (click)="NavigateToAddTag()">
         <h3><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new tag!</h3>
       </div>
     </div>

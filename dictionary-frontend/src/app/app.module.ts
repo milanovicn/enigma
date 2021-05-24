@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppService } from './_shared/services/appService.service';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AddTagComponent } from './add-tag/add-tag.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { AddTagComponent } from './add-tag/add-tag.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

@@ -146,19 +146,33 @@ p {
   margin-right: 0;
 }
 
-.other-terms {
+.other-terms, .actions {
   border: 0.5px solid white;
   padding: 5px;
   color: white;
   background-color: #ffffff0e;
   cursor: pointer;
   margin: 0 8px 4px 0;
+  min-width: 120px;
+  text-align: center;
 }
+
 .other-terms:hover {
   background-color: #4b4b4b88;
 }
 .other-terms:active {
   background-color: #27272783;
+}
+
+.actions {
+  margin-top: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #122936;
+}
+
+.actions:hover {
+  background-color: #0f1b22;
 }
 
 a,

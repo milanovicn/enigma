@@ -128,7 +128,7 @@ label{
   margin: 4px 8px;
   padding: 4px 8px;
   cursor: pointer;
-  width: 100px;
+  width: 130px;
   min-width: auto;
   text-align: center;
   border: 1px solid #a6a6a6;
@@ -139,18 +139,12 @@ label{
   color: black;
 }
 
-.tag:hover, [type=checkbox]:checked + div {
-  border: 1px solid #2ca521;
-  background-color: #2ca521;
+.tag:hover {
+  border: 1px solid #08283a;
+  background-color: #08283a;
   color: white;
 }
 
-[type=checkbox] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
 
 .submit-btn {
   margin: 20px 8px;
@@ -195,6 +189,14 @@ footer a {
   align-items: center;
 }
 
+
+.select-custom {
+  padding: 5px;
+  margin-top: 10px;
+  width: 50%;
+  text-decoration: none;
+  outline: none;
+}
 
 
 /* Responsive Styles */

@@ -41,13 +41,20 @@ export class AppService {
         return this.http.post("/api/dictionary/user/logout", request);
     }
 
-    //nije implementirano na backu:
     public createTerm(termDTO: TermDTO) {
-        return this.http.post<string>("/api/dictionary/term/createTerm", termDTO)//termDTO);
+        return this.http.post<string>("/api/dictionary/term", termDTO)
+    }
+
+    public updateTerm(termDTO: TermDTO) {
+      return this.http.put<string>("/api/dictionary/term", termDTO)
+    }
+
+    public deleteTerm(termDTO: TermDTO) {
+      return this.http.delete<string>("/api/dictionary/term/" + termDTO.term_ID)
     }
 
     public createTag(tagDTO: TagDTO) {
-        return this.http.post<TagDTO>("/api/dictionary/tag/createTag", tagDTO);
+        return this.http.post<TagDTO>("/api/dictionary/tag", tagDTO);
     }
 
 }
