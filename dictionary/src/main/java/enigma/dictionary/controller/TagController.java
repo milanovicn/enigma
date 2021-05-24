@@ -34,13 +34,13 @@ public class TagController {
         return new ResponseEntity<ArrayList<TagDTO>>(tagsDTO, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/createTag")
+    @PostMapping(value = "")
     public ResponseEntity<?>  createTag(@RequestBody TagDTO tagDTO, @Context HttpServletRequest request) {
         boolean created = tagService.createTag(tagDTO);
         if(created) {
             return new ResponseEntity<>("{\"response\":\"Tag saved successfully\", \"status\":\"true\"}", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("{\"response\":\"Tag wasn't saved\" ,\"status\":\"false\"}", HttpStatus.OK);
+            return new ResponseEntity<>("{\"response\":\"Error! Tag with this name already exists\" ,\"status\":\"false\"}", HttpStatus.OK);
         }
 
     }

@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface TermRepository extends JpaRepository<Term, Long> {
 
-    boolean findTermByTitle(String title);
+    Term findTermByTitle(String title);
 
 
 }

@@ -18,12 +18,11 @@ export class AddTagComponent implements OnInit {
   tag: TagDTO
 
   constructor(private router: Router, private appService:AppService) {
-    this.tags = JSON.parse(localStorage.getItem('tags'));
-    this.tags.sort((a,b) => (<TagDTO>a).name.localeCompare((<TagDTO>b).name))
     this.getUser()
   }
 
   ngOnInit(): void {
+    this.loadTags()
     this.onWindowResize()
   }
 
@@ -40,11 +39,23 @@ export class AddTagComponent implements OnInit {
     if (!this.tag_name){
       return // all fields are required
     }
+    this.tag = new TagDTO(-1, this.tag_name)
 
-    this.tag = new TagDTO(6, "ana")
     this.appService.createTag(this.tag).subscribe(
-      result => this.alertSuccess(),
-      err => this.alertError()
+      {
+        next: data => {
+            if (data["status"] == "true"){
+              alert(data["response"])
+              this.router.navigate(['/start-page'])
+            }
+            else if (data["status"] == "false"){
+              alert(data["response"])
+            }
+        },
+        error: error => {
+            console.error('There was an error!', error.message);
+        }
+    }
     );
   }
 
@@ -61,5 +72,14 @@ export class AddTagComponent implements OnInit {
       result => {},
       error => this.router.navigate(['/login-page']),
     );
+  }
+
+  loadTags(){
+    this.appService.getTags().subscribe({
+      next: tags => {
+        this.tags = tags;
+        this.tags.sort((a,b) => (<TagDTO>a).name.localeCompare((<TagDTO>b).name))
+      }
+    });
   }
 }
