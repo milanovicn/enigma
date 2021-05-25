@@ -17,10 +17,10 @@ public class Term {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "description", nullable = false, length = 30000)
+    @Column(name = "description", nullable = false, length = 6000)
     private String description;
 
-    @Column(name = "details", nullable = false, length = 30000)
+    @Column(name = "details", nullable = false, length = 6000)
     private String details;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
