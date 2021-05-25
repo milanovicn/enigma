@@ -2,6 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { error } from '@angular/compiler/src/util';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Modal } from '../modal';
 import { TagDTO } from '../_shared/dto/TagDTO';
 import { TeamDTO } from '../_shared/dto/TeamDTO';
 import { TermDTO } from '../_shared/dto/TermDTO';
@@ -62,6 +63,13 @@ export class AddTermComponent implements OnInit {
     document.getElementById("content").style.minHeight = window.innerHeight - this.height + "px";
   }
 
+  @HostListener('click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (event.target == document.getElementById("myModal") || event.target == document.getElementById("closeId")){
+      Modal.removeModal()
+    }
+  }
+
   setValues(){
     this.action_title = "Update"
     this.user_team = this.term_update.team.name == 'General'
@@ -69,6 +77,7 @@ export class AddTermComponent implements OnInit {
     this.detail_description = this.term_update.details
     this.short_description = this.term_update.description
     this.picked_tags = this.term_update.tags
+    this.links = this.term_update.links
     for(let i = 0; i < this.tags.length; i++){
       for(let ii = 0; ii < this.picked_tags.length; ii++){
         if (this.tags[i].name == this.picked_tags[ii].name){
@@ -90,15 +99,6 @@ export class AddTermComponent implements OnInit {
 
   }
 
-  alertError(){
-    alert("Wrong credentials! Try again")
-  }
-
-  alertSuccess() {
-    alert("Term added!")
-    this.router.navigate(['/start-page'])
-  }
-
   updateTerm() {
     let t = this.user_team ? this.teams[0] : this.user.team
     this.term = new TermDTO(this.term_name, this.short_description, this.detail_description, this.term_update.term_ID, t, this.picked_tags, this.links)
@@ -107,11 +107,11 @@ export class AddTermComponent implements OnInit {
       {
         next: data => {
             if (data["status"] == "true"){
-              alert(data["response"])
+              Modal.insertModal(data["response"])
               this.router.navigate(['/start-page'])
             }
             else if (data["status"] == "false"){
-              alert(data["response"])
+              Modal.insertModal(data["response"])
             }
         },
         error: error => {
@@ -164,11 +164,11 @@ export class AddTermComponent implements OnInit {
       {
         next: data => {
             if (data["status"] == "true"){
-              alert(data["response"])
+              Modal.insertModal(data["response"])
               this.router.navigate(['/start-page'])
             }
             else if (data["status"] == "false"){
-              alert(data["response"])
+              Modal.insertModal(data["response"])
             }
         },
         error: error => {

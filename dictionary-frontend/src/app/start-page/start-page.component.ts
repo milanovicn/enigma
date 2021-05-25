@@ -216,7 +216,7 @@ export class StartPageComponent implements OnInit {
   }
 
   NavigateToTerm(term){
-    term.links = ['https://www.cfainstitute.org/en/programs/investment-foundations/curriculum/download', 'http://www.facebook.com']
+    //term.links = ['https://www.cfainstitute.org/en/programs/investment-foundations/curriculum/download', 'http://www.facebook.com']
     localStorage.setItem("picked_term", JSON.stringify(term))
     this.router.navigate(['/show-term'])
   }

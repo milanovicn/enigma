@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Modal } from '../modal';
 import { LoginRequest } from '../_shared/dto/LoginRequest';
 import { TagDTO } from '../_shared/dto/TagDTO';
 import { TeamDTO } from '../_shared/dto/TeamDTO';
@@ -55,7 +56,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   alertError(){
-    alert("Wrong credentials! Try again")
+    Modal.insertModal("Wrong credentials! Try again")
   }
 
   getUser() {
@@ -69,7 +70,12 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  insertModal() {
-    //document.getElementsByName("body")[0]
+  @HostListener('click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (event.target == document.getElementById("myModal") || event.target == document.getElementById("closeId")){
+      Modal.removeModal()
+    }
   }
+
+
 }

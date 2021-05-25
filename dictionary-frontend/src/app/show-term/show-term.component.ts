@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Modal } from '../modal';
 import { TermDTO } from '../_shared/dto/TermDTO';
 import { UserDTO } from '../_shared/dto/UserDTO';
 import { AppService } from '../_shared/services/appService.service';
@@ -31,6 +32,14 @@ export class ShowTermComponent implements OnInit {
     this.height = Number(document.getElementById("top-container")?.offsetHeight);
     document.getElementById("content").style.marginTop = (this.height) + "px";
     document.getElementById("content").style.minHeight = window.innerHeight - this.height + "px";
+  }
+
+  @HostListener('click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (event.target == document.getElementById("myModal") || event.target == document.getElementById("closeId")){
+      Modal.removeModal()
+      this.router.navigate(['/start-page'])
+    }
   }
 
   NavigateToAddTerm(){
@@ -65,13 +74,7 @@ export class ShowTermComponent implements OnInit {
     this.appService.deleteTerm(this.term).subscribe(
       {
         next: data => {
-            if (data["status"] == "true"){
-              alert(data["response"])
-              this.router.navigate(['/start-page'])
-            }
-            else if (data["status"] == "false"){
-              alert(data["response"])
-            }
+            Modal.insertModal("Term deleted!")
         },
         error: error => {
             console.error('There was an error!', error.message);
@@ -80,11 +83,15 @@ export class ShowTermComponent implements OnInit {
     )
   }
 
-  parseLink(l) {
-    let index = (<string>l).indexOf("https://") + 8
-    l = (<string>l).substr(index)
+  parseLink(l: string) {
+    let index = l.indexOf("https://")
+    if (index == 0) index = 8
+    else if (l.indexOf("http://") == 0) index = 7
+    else index = 0
+    l = l.substr(index)
     index = l.indexOf("/")
     return (<string>l).substr(0, index > 0 ? index : l.length)
   }
+
 }
 
