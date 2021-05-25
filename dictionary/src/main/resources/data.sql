@@ -1,19 +1,22 @@
-
+-- Teams
 INSERT INTO team(name) VALUES ('General'),('APT'),
 ('Front Arena'), ('XSP'), ('Quantum'), ('Sierra'),
 ('Insurance'), ('Adaptiv'), ('Apex Collateral'),
 ('PTDS '), ('ITDS');
 
+-- Tags
 INSERT INTO tag(name) VALUES ('finance'), ('technical'),
 ('procedural'), ('product'), ('clients');
 
+-- Users
 INSERT INTO users(name, surname, e_number, email, password, is_admin, team_team_id ) VALUES
 ('Ana', 'Stakic', 'e5637521', 'ana.stakic@fisglobal.com', 'dictionary123*', 1, 3 ),
 ('Aleksandra', 'Maksimovic', 'e5638600', 'aleksandra.maksimovic@fisglobal.com', 'dictionary123*', 1, 2 ),
 ('Nikola', 'Vitorovic', 'e5598277', 'nikola.vitorovic@fisglobal.com', 'dictionary123*', 1, 2 ),
 ('Nina', 'Milanovic', 'e5638799', 'nina.milanovic@fisglobal.com', 'dictionary123*', 1, 2 );
 
-INSERT INTO `dictionary`.`term` (`term_id`, `description`, `details`, `title`, `team_team_id`) VALUES (1, 'Yield refers to the earnings generated and realized on an investment over a particular period of time.', ' It\'s expressed as a percentage based on the invested amount, current market value, or face value of the security. It includes the interest earned or dividends received from holding a particular security. Depending on the valuation (fixed vs. fluctuating) of the security, yields may be classified as known or anticipated.', 'Yeald', 1);
+-- Terms
+INSERT INTO `dictionary`.`term` (`term_id`, `description`, `details`, `title`, `team_team_id`) VALUES (1, 'Yield refers to the earnings generated and realized on an investment over a particular period of time.', ' It\'s expressed as a percentage based on the invested amount, current market value, or face value of the security. It includes the interest earned or dividends received from holding a particular security. Depending on the valuation (fixed vs. fluctuating) of the security, yields may be classified as known or anticipated.', 'Yield', 1);
 INSERT INTO `dictionary`.`term` (`term_id`, `description`, `details`, `title`, `team_team_id`) VALUES (2, 'Quantity demanded is a term used in economics to describe the total amount of a good or service that consumers demand over a given interval of time. ', 'Quantity demanded is a term used in economics to describe the total amount of a good or service that consumers demand over a given interval of time. It depends on the price of a good or service in a marketplace, regardless of whether that market is in equilibrium.', 'Quantity Demanded', 1);
 INSERT INTO `dictionary`.`term` (`term_id`, `description`, `details`, `title`, `team_team_id`) VALUES (3, 'Leverage results from using borrowed capital as a funding source when investing to expand the firm\'s asset base and generate returns on risk capital.', ' Leverage is an investment strategy of using borrowed money—specifically, the use of various financial instruments or borrowed capital—to increase the potential return of an investment. Leverage can also refer to the amount of debt a firm uses to finance assets.', 'Leverage', 1);
 INSERT INTO `dictionary`.`term` (`term_id`, `description`, `details`, `title`, `team_team_id`) VALUES (4, 'Liquidity refers to the efficiency or ease with which an asset or security can be converted into ready cash without affecting its market price. ', 'Liquidity refers to the efficiency or ease with which an asset or security can be converted into ready cash without affecting its market price. The most liquid asset of all is cash itself.', 'Liquidity', 1);
@@ -48,7 +51,38 @@ INSERT INTO `dictionary`.`term` (`term_id`, `description`, `details`, `title`, `
 INSERT INTO `dictionary`.`term` (`term_id`, `description`, `details`, `title`, `team_team_id`) VALUES (33, 'In software engineering, continuous integration (CI) is the practice of merging all developers'' working copies to a shared mainline several times a day.', 'Continuous integration is a coding philosophy and set of practices that drive development teams to implement small changes and check in code to version control repositories frequently. Because most modern applications require developing code in different platforms and tools, the team needs a mechanism to integrate and validate its changes.', 'CI (Continuous Integration)', 1);
 INSERT INTO `dictionary`.`term` (`term_id`, `description`, `details`, `title`, `team_team_id`) VALUES (34, 'Jira Software is part of a family of products designed to help teams of all types manage work. ', 'Originally, Jira was designed as a bug and issue tracker. But today, Jira has evolved into a powerful work management tool for all kinds of use cases, from requirements and test case management to agile software development.', 'Jira', 1);
 
-
+-- Term tags
 INSERT INTO `dictionary`.`term_tags`(`term_term_id`, `tags_tag_id`)
 VALUES (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1), (11, 1), (12, 1), (13, 1), (14, 1), (15, 1), (16, 1), (17, 3), (18, 3), (19, 3), (20, 5), (21, 5), (22, 5), (23, 5), (24, 5), (25, 1), (26, 4), (26, 5), (27, 4), (27, 5), (28, 3), (29, 3), (30, 2), (31, 2), (32, 2), (33, 2), (34, 2);
+
+
+-- Links
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/y/yield.asp', '1');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/q/quantitydemanded.asp', '2');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/l/leverage.asp', '3');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/l/liquidity.asp', '4');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/h/hedge.asp', '5');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/h/hedgefund.asp', '6');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/g/grossincome.asp', '7');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/e/exchangerate.asp', '8');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/d/derivative.asp', '9');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/b/bond.asp', '10');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/f/financialasset.asp', '11');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/a/acquisition.asp', '12');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/w/warrant.asp', '13');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/v/vesting.asp', '14');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/t/trust-fund.asp', '15');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.investopedia.com/terms/p/product-portfolio.asp', '16');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://wd5.myworkday.com/fis/d/home.htmld', '17');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://regu.fisglobal.com/', '18');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.morganstanley.com/', '20');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.hsbc.com/', '21');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.deka.de/deka-group', '22');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.commerzbank.com/', '23');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.lbbw.de/', '24');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.linkedin.com/learning/agile-development-practices/welcome?u=2141490', '25');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://planv.fnfis.com/', '29');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.linkedin.com/learning/topics/bamboo?u=2141490', '32');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.linkedin.com/learning/devops-foundations-continuous-delivery-continuous-integration/welcome?u=2141490', '33');
+INSERT INTO `dictionary`.`link` (`name`, `term_term_id`) VALUES ('https://www.linkedin.com/learning/search?keywords=continuous%20integration&u=2141490', '33');
 
