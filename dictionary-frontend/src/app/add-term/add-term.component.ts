@@ -165,7 +165,12 @@ export class AddTermComponent implements OnInit {
         next: data => {
             if (data["status"] == "true"){
               Modal.insertModal(data["response"])
-              this.router.navigate(['/start-page'])
+              this.term_name = ""
+              this.detail_description = ""
+              this.short_description = ""
+              this.picked_tags = []
+              this.links = []
+              this.loadTags()
             }
             else if (data["status"] == "false"){
               Modal.insertModal(data["response"])

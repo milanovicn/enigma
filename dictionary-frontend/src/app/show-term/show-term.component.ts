@@ -74,7 +74,7 @@ export class ShowTermComponent implements OnInit {
     this.appService.deleteTerm(this.term).subscribe(
       {
         next: data => {
-            Modal.insertModal("Term deleted!")
+            Modal.insertModal("Term is deleted!")
         },
         error: error => {
             console.error('There was an error!', error.message);

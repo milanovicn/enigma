@@ -55,7 +55,7 @@ export class AddTagComponent implements OnInit {
         next: data => {
             if (data["status"] == "true"){
               Modal.insertModal(data["response"])
-              this.router.navigate(['/start-page'])
+              this.tag_name = ""
             }
             else if (data["status"] == "false"){
               Modal.insertModal(data["response"])
