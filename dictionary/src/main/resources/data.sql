@@ -49,5 +49,6 @@ INSERT INTO `dictionary`.`term` (`term_id`, `description`, `details`, `title`, `
 INSERT INTO `dictionary`.`term` (`term_id`, `description`, `details`, `title`, `team_team_id`) VALUES (34, 'Jira Software is part of a family of products designed to help teams of all types manage work. ', 'Originally, Jira was designed as a bug and issue tracker. But today, Jira has evolved into a powerful work management tool for all kinds of use cases, from requirements and test case management to agile software development.', 'Jira', 1);
 
 
--- INSERT INTO `dictionary`.`term_tags`(`term_term_id`, `tags_tag_id`)
--- VALUES (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1), (11, 1), (12, 1), (13, 1), (14, 1), (15, 1), (16, 1), (17, 3), (18, 3), (19, 3), (20, 5), (21, 5), (22, 5), (23, 5), (24, 5);
+INSERT INTO `dictionary`.`term_tags`(`term_term_id`, `tags_tag_id`)
+VALUES (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1), (11, 1), (12, 1), (13, 1), (14, 1), (15, 1), (16, 1), (17, 3), (18, 3), (19, 3), (20, 5), (21, 5), (22, 5), (23, 5), (24, 5), (25, 1), (26, 4), (26, 5), (27, 4), (27, 5), (28, 3), (29, 3), (30, 2), (31, 2), (32, 2), (33, 2), (34, 2);
+
