@@ -15,6 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -66,12 +67,13 @@ public class TermServiceImpl implements TermService {
         t.setDescription(termDTO.getDescription());
         t.setDetails(termDTO.getDetails());
         List<Tag> tags = new ArrayList<Tag>();
+        boolean isFinancial=false;
         for(TagDTO tag : termDTO.getTags()) {
+
             Tag a = tagService.transformToModel(tag);
+            if (a.getTag_ID()==1) isFinancial=true;
             tags.add(a);
         }
-
-
 
         t.setTags(tags);
         t.setTeam(teamService.transformToModel(termDTO.getTeam()));
@@ -80,11 +82,17 @@ public class TermServiceImpl implements TermService {
 
             termRepository.save(t);
             List<Link> links = new ArrayList<Link>();
-            for(String link : termDTO.getLinks()) {
-                Link l = linkService.transformToModel(link, t);
-                links.add(l);
+            String url="";
+            if(isFinancial) {
+                url= "https://www.investopedia.com/search?q="+t.getTitle().toLowerCase(Locale.ROOT).replaceAll("\\s","");
+                Link l= linkService.transformToModel(url, t);
+
             }
-            t.setLinks(links);
+            for(String link : termDTO.getLinks()) {
+                if(link.equals(url)) continue;
+                Link l = linkService.transformToModel(link, t);
+
+            }
             return true;
         }
         else return false;
