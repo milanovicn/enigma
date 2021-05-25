@@ -22,6 +22,7 @@ export class AddTagComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo({top:1})
     this.loadTags()
     this.onWindowResize()
   }

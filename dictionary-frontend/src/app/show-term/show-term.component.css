@@ -203,6 +203,10 @@ footer a {
 }
 
 
+a.action-link:hover {
+  color: white;
+  text-decoration: underline;
+}
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {

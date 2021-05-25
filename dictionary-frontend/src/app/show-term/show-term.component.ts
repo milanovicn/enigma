@@ -17,13 +17,15 @@ export class ShowTermComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo({top:1})
     this.onWindowResize()
     this.term = JSON.parse(localStorage.getItem('picked_term'));
+    console.log(this.term)
     this.user = JSON.parse(localStorage.getItem('user'));
   }
 
-  @HostListener('window:resize', ['$event'])
   @HostListener('window:load', ['$event'])
+  @HostListener('window:resize', ['$event'])
   @HostListener('window:scroll', ['$event'])
   onWindowResize(){
     this.height = Number(document.getElementById("top-container")?.offsetHeight);
@@ -76,6 +78,13 @@ export class ShowTermComponent implements OnInit {
         }
       }
     )
+  }
+
+  parseLink(l) {
+    let index = (<string>l).indexOf("https://") + 8
+    l = (<string>l).substr(index)
+    index = l.indexOf("/")
+    return (<string>l).substr(0, index > 0 ? index : l.length)
   }
 }
 

@@ -8,6 +8,7 @@ export class TermDTO {
   details: string;
   team: TeamDTO;        // Team
   tags: Array<TagDTO>;  // Tags
+  links: string[]
 
   constructor(
     name: string,
@@ -15,7 +16,8 @@ export class TermDTO {
     details: string,
     term_id: number,
     team: TeamDTO,
-    tags: Array<TagDTO>
+    tags: Array<TagDTO>,
+    links: string[] = []
   )
   {
     this.title = name;
@@ -24,5 +26,6 @@ export class TermDTO {
     this.tags = tags;
     this.team = team;
     this.term_ID = term_id;
+    this.links = links;
   }
 }

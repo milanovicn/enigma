@@ -68,4 +68,8 @@ export class LoginPageComponent implements OnInit {
       }
     });
   }
+
+  insertModal() {
+    //document.getElementsByName("body")[0]
+  }
 }

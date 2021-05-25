@@ -26,6 +26,9 @@ export class AddTermComponent implements OnInit {
   picked_tag: string = ""
   picked_tags: Array<TagDTO>
 
+  link: string = ""
+  links: string[] = []
+
   user_team: boolean = false
   term: TermDTO
   user: UserDTO
@@ -39,14 +42,15 @@ export class AddTermComponent implements OnInit {
 
     this.term_update = <TermDTO>(JSON.parse(localStorage.getItem('term_for_update')))
     console.log(this.term_update)
-
   }
 
   ngOnInit() {
+    window.scrollTo({top:1})
+    this.onWindowResize()
     this.loadTags()
     this.loadTeams()
     this.getUser()
-    this.onWindowResize()
+    this.links = []
   }
 
   @HostListener('window:resize', ['$event'])
@@ -97,7 +101,7 @@ export class AddTermComponent implements OnInit {
 
   updateTerm() {
     let t = this.user_team ? this.teams[0] : this.user.team
-    this.term = new TermDTO(this.term_name, this.short_description, this.detail_description, this.term_update.term_ID, t, this.picked_tags)
+    this.term = new TermDTO(this.term_name, this.short_description, this.detail_description, this.term_update.term_ID, t, this.picked_tags, this.links)
 
     this.appService.updateTerm(this.term).subscribe(
       {
@@ -152,7 +156,7 @@ export class AddTermComponent implements OnInit {
   createNewTerm() {
 
     let team = this.user_team ? this.teams[0] : this.user.team
-    this.term = new TermDTO(this.term_name, this.short_description, this.detail_description, -1, team, this.picked_tags)
+    this.term = new TermDTO(this.term_name, this.short_description, this.detail_description, -1, team, this.picked_tags, this.links)
 
     console.log(JSON.stringify(this.term).toString())
 
@@ -204,6 +208,36 @@ export class AddTermComponent implements OnInit {
     this.tags.push(this.picked_tags[i])
     this.picked_tags.splice(i, 1)
     this.picked_tag = ""
+  }
+
+  checkIfEnter(event: KeyboardEvent) {
+    document.getElementById("ins-link").style.borderColor = "#a6a6a6"
+    if (event.key == 'Enter') {
+      this.insertLink()
+    }
+  }
+
+  insertLink() {
+    if (this.link == "") {
+      document.getElementById("ins-link").style.borderColor = "red"
+      return
+    }
+
+    for (let i = 0; i < this.links.length; i++) {
+      if (this.links[i] == this.link){
+        document.getElementById("ins-link").style.borderColor = "red"
+        this.link = ""
+        return
+      }
+    }
+
+    this.links.push(this.link)
+    console.log(this.links)
+    this.link = ""
+  }
+
+  removeLink(i) {
+    this.links.splice(i, 1)
   }
 }
 

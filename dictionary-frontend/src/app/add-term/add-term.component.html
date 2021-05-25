@@ -45,8 +45,7 @@
       </div>
 
       <div class="form-label">
-        <p>Pick tag relevant for the term
-        </p>
+        <p>Pick tag relevant for the term</p>
         <select id="tag-select" class="select-custom" (change)="clickedOption()" name="picked_tag" [(ngModel)]="picked_tag">
           <option selected disabled value="">Pick a tag</option>
           <option *ngFor = "let tag of tags; index as i" value={{tag.name}}>
@@ -61,6 +60,22 @@
             <div class="tag" (click)="removePickedTag(i)">{{tag.name}}
               <i class="fa fa-times" style="font-weight: 100; padding-left: 5px;" aria-hidden="true"></i>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-label">
+        <p>Insert usefull links</p>
+        <div style="display: flex;">
+          <input id="ins-link" type="text" spellcheck="false" placeholder="Usefull link" class="text-input link-input" name="link" [(ngModel)]=link (keyup)="checkIfEnter($event)">
+          <div class="link-add" (click)="insertLink()">Add</div>
+        </div>
+      </div>
+      <div class="form-label">
+        <div class="pick-tags">
+          <div *ngFor = "let l of links; index as i" class="link" (click)="removeLink(i)">
+            {{l}}
+            <i class="fa fa-times" style="font-weight: 100; padding-left: 5px;" aria-hidden="true"></i>
           </div>
         </div>
       </div>

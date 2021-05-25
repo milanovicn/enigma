@@ -48,12 +48,13 @@
 
     <div class="card-container card right-panel">
       <div class="container-name">
-        <h3>Images</h3>
-        <h3>Links</h3>
-      </div>
-      <div class="container-name">
-        <h3>Images</h3>
-        <h3>Links</h3>
+        <h3 style="margin-bottom: 20px;">Usefull links</h3>
+        <h5 *ngIf="term.links == undefined || term.links.length == 0"><i>There is no added links..</i></h5>
+        <div *ngIf="term.links != undefined && term.links.length > 0">
+          <a class="action-link" *ngFor = "let l of term.links; index as i" href={{l}} target="_blank">
+            <h5>{{parseLink(l)}}</h5>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -65,7 +66,7 @@
     </div>
 
     <div class="card-container">
-      <div *ngIf="user.team.name == term.team.name or term.team.name == 'General'" class="actions" (click)="updateTerm()">
+      <div *ngIf="user.team.name == term.team.name || term.team.name == 'General'" class="actions" (click)="updateTerm()">
         Update term
       </div>
       <div *ngIf="user.admin" class="actions" (click)="deleteTerm()">

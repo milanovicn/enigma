@@ -117,6 +117,34 @@ label{
   width: 100%;
 }
 
+.link-input {
+  width: 45%;
+  min-width: 200px;
+}
+
+.link-add {
+  width: 5%;
+  min-width: 50px;
+  margin: 10px 5px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #222222;
+  border: 1px solid #a6a6a6;
+  background-color: #a6a6a655;
+  cursor: pointer;
+}
+
+.link-add:hover {
+  background-color: #a6a6a6;
+  color: white;
+}
+
+.link-add:active {
+  border: 1px solid #858585;
+  background-color: #858585;
+}
+
 .pick-tags {
   display: flex;
   flex-wrap: wrap;
@@ -124,11 +152,10 @@ label{
   margin-top: 10px;
 }
 
-.tag {
-  margin: 4px 8px;
+.tag, .link {
   padding: 4px 8px;
+  margin: 4px 8px;
   cursor: pointer;
-  width: 130px;
   min-width: auto;
   text-align: center;
   border: 1px solid #a6a6a6;
@@ -137,6 +164,14 @@ label{
   font-weight: normal;
   font-style: normal;
   color: black;
+}
+
+.tag {
+  width: 130px;
+}
+
+.link {
+  width: 50%;
 }
 
 .tag:hover {
@@ -194,6 +229,7 @@ footer a {
   padding: 5px;
   margin-top: 10px;
   width: 50%;
+  min-width: 250px;
   text-decoration: none;
   outline: none;
 }
