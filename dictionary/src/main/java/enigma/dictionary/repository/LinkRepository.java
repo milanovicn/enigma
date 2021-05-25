@@ -12,4 +12,9 @@ import javax.transaction.Transactional;
 
 public interface LinkRepository extends JpaRepository<Link, Long> {
 
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Link l WHERE l.term.term_ID = :termId")
+    void deleteLinkByTermId(@Param("termId") Long termId);
+
 }
