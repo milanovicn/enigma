@@ -6,7 +6,7 @@ export class UserDTO {
   email: string;
   name: string;
   surname: string;
-  isAdmin: boolean;
+  admin: boolean;
   team: TeamDTO;
 
   constructor(
@@ -24,7 +24,7 @@ export class UserDTO {
       this.email = email;
       this.name = name;
       this.surname = surname;
-      this.isAdmin = is_admin;
+      this.admin = is_admin;
       this.team = team;
     }
 }

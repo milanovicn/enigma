@@ -20,7 +20,7 @@
       <div class="top-container-right-item" (click)="NavigateToAddTerm()">
         <h3><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new term!</h3>
       </div>
-      <div *ngIf="true" class="top-container-right-item" (click)="NavigateToAddTag()">
+      <div *ngIf="user.admin" class="top-container-right-item" (click)="NavigateToAddTag()">
         <h3><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new tag!</h3>
       </div>
     </div>
@@ -32,7 +32,6 @@
     <div id="usefull-links">
       <div class="container-name title">
         <h2 style="color: black;"><i>FIS Dictionary </i><b>{{term.title}}</b></h2>
-        <p><i>Term pubished by User.. 2021/05/11</i></p>
       </div>
       <div class="container-name short-desc">
         <h3>{{term.description}}</h3>
@@ -58,13 +57,25 @@
       </div>
     </div>
 
-    <div class="other-terms">
+    <div *ngIf="term.team.name != 'General'" class="other-terms">
       {{term.team.name}}
     </div>
     <div class="other-terms" *ngFor = "let tag of term.tags">
       {{tag.name}}
     </div>
+
+    <div class="card-container">
+      <div *ngIf="user.team.name == term.team.name or term.team.name == 'General'" class="actions" (click)="updateTerm()">
+        Update term
+      </div>
+      <div *ngIf="user.admin" class="actions" (click)="deleteTerm()">
+        Delete term
+      </div>
+    </div>
+
   </div>
+
+
 </div>
 
 <!-- Footer -->

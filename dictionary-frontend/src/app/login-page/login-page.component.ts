@@ -45,7 +45,10 @@ export class LoginPageComponent implements OnInit {
 
     this.respBool = false;
     this.appService.login(this.loginRequest).subscribe(
-      result => this.getUser(),
+      result => {
+        this.getUser()
+
+      },
       err => this.alertError()
     );
 
@@ -60,6 +63,7 @@ export class LoginPageComponent implements OnInit {
       next: user => {
         this.user = user;
         console.log(this.user);
+        localStorage.setItem("user", JSON.stringify(this.user))
         this.router.navigate(['/start-page'])
       }
     });

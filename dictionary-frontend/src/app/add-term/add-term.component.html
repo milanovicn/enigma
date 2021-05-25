@@ -46,36 +46,34 @@
 
       <div class="form-label">
         <p>Pick tag relevant for the term
-          <label *ngIf = "myform.submitted && tag_val.length == 0">*required</label>
         </p>
+        <select id="tag-select" class="select-custom" (change)="clickedOption()" name="picked_tag" [(ngModel)]="picked_tag">
+          <option selected disabled value="">Pick a tag</option>
+          <option *ngFor = "let tag of tags; index as i" value={{tag.name}}>
+            {{tag.name}}
+          </option>
+        </select>
 
+      </div>
+      <div class="form-label">
         <div class="pick-tags">
-          <ng-container *ngFor = "let tag of tags; index as i">
-            <label for="tag_{{i}}">
-              <input type="checkbox" value={{tag}} id="tag_{{i}}" name="tag{{i}}" (change)="changeSelection(i)" required>
-              <div class="tag">{{tag.name}}</div>
-            </label>
-          </ng-container>
+          <div *ngFor = "let tag of getPickedTags(); index as i">
+            <div class="tag" (click)="removePickedTag(i)">{{tag.name}}
+              <i class="fa fa-times" style="font-weight: 100; padding-left: 5px;" aria-hidden="true"></i>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="form-label">
-        <p>Pick tag relevant for the term
-          <label *ngIf = "myform.submitted && tag_val.length == 0">*required</label>
-        </p>
-
-        <div class="pick-tags">
-          <ng-container *ngFor = "let tag of tags; index as i">
-            <label for="tag_{{i}}">
-              <input type="checkbox" value={{tag}} id="tag_{{i}}" name="tag{{i}}" (change)="changeSelection(i)" required>
-              <div class="tag">{{tag.name}}</div>
-            </label>
-          </ng-container>
-        </div>
+        <input type="checkbox" id="check-box" name="user_team" [(ngModel)]="user_team" style="cursor: pointer;">
+        <label style="font-style: normal; color: black; font-weight: lighter; cursor: pointer;" (click)="clickCheckbox()">
+          Save term as general term
+        </label>
       </div>
 
       <div class="form-label">
-        <input type="submit" (click)="SaveItem()" value="Submit" class="submit-btn" >
+        <input type="submit" (click)="SaveItem()" value={{action_title}} class="submit-btn">
       </div>
     </form>
   </div>
