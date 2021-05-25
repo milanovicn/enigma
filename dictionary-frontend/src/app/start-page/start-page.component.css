@@ -195,7 +195,7 @@ p {
   background-color: #2f8527;
 }
 
-.links {
+.letter {
   height: 40px;
   width: 40px;
   text-align: center;
@@ -235,10 +235,10 @@ p {
 
 
 
-.links:hover {
+.letter:hover {
   background-color: #2f8527;
 }
-.links:active {
+.letter:active {
   background-color: #2f8527;
 }
 
@@ -328,7 +328,23 @@ footer a {
   align-items: center;
 }
 
+.clear-filter {
+  cursor: pointer; color: rgb(141, 175, 238);
+}
 
+.clear-filter:hover {
+  color: rgb(92, 141, 233);
+  text-decoration: underline;
+}
+
+.clear-all {
+  color: white; cursor: pointer;
+}
+
+.clear-all:hover {
+  color: white;
+  text-decoration: underline;
+}
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {

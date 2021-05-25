@@ -32,21 +32,18 @@
     <div class="filter" id="all_letters">
       <div class="container-name">
         <!--<h2 style="color: black;">Browse FIS dictionary</h2>-->
-        <p>Pick a start letter</p>
+        <p>Pick a start letter <a (click)="ClickOnLetter(-2)" class="clear-filter">/Clear filter by start letter</a></p>
       </div>
       <div class="alphas">
-        <div class="links" id="letter_{{i}}" *ngFor = "let letter of letters; index as i" (click)="Letter(i)">
+        <div class="letter" id="letter_{{i}}" *ngFor = "let letter of letters; index as i" (click)="Letter(i)">
           <span>{{letter}}</span>
-        </div>
-        <div style="width: 100%;">
-          <div (click)="Letter(-1)" id="show_all" class="show_all">Show all terms</div>
         </div>
       </div>
     </div>
 
     <div class="filter" id="all_tags">
       <div class="container-name">
-        <p>Pick a tag</p>
+        <p>Pick a tag <a (click)="ClickOnTag(-1)" class="clear-filter">/Clear filter by tag</a></p>
       </div>
 
       <div class="alphas">
@@ -58,12 +55,21 @@
 
     <div class="card-container card finterms" id="fin-terms">
       <div class="container-name">
-        <h2>All terms</h2>
+        <h3><a  (click)="Letter(-1)" class="clear-all">Show all terms</a></h3>
         <div class="search_class">
           <i class="fa fa-search" style="color: white; padding-right: 10px;"></i>
           <input (keyup)="FinTermsSearch()" id="search_terms_id" type="text"
           placeholder="Search financial term" [(ngModel)]="search_term">
         </div>
+      </div>
+
+      <div style="width: 100%; display: flex; flex-wrap: wrap; justify-content: baseline;">
+        <h6 *ngIf="picked_team"><i>{{picked_team.name}}</i></h6>
+        <h6 *ngIf="picked_team && picked_tag"><i>,&nbsp;</i></h6>
+        <h6 *ngIf="!picked_tag && picked_team && picked_letter"><i>,&nbsp;</i></h6>
+        <h6 *ngIf="picked_tag"><i>{{picked_tag.name}}</i></h6>
+        <h6 *ngIf="picked_tag && picked_letter"><i>,&nbsp;</i></h6>
+        <h6 *ngIf="picked_letter"><i>{{picked_letter.toUpperCase()}}</i></h6>
       </div>
 
       <div class="card-container" *ngFor = "let terms of FinTermsSearch() | keyvalue" style="width: 100%;">
@@ -83,7 +89,7 @@
     <div class="card-container card fisteams" id="fis-teams">
       <div class="container-name">
         <!--<h2>FIS terms per teams</h2>-->
-        <p class="white">Filter terms by teams</p>
+        <p class="white">Filter terms by team<a (click)="ClickOnTeam(-1)" class="clear-filter">/Clear filter by team</a></p>
       </div>
 
       <div class="card-small fis_teams" id=team_{{i}} *ngFor = "let team of fis_teams_list; index as i" (click)="Team(i)">

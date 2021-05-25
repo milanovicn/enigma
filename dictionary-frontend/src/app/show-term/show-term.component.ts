@@ -42,6 +42,12 @@ export class ShowTermComponent implements OnInit {
     }
   }
 
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    console.log('Back button pressed');
+    window.history.go(-2)
+  }
+
   NavigateToAddTerm(){
     localStorage.setItem('term_for_update', JSON.stringify(null))
     this.router.navigate(['/add-term'])

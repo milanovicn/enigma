@@ -122,6 +122,12 @@ export class AddTermComponent implements OnInit {
     );
   }
 
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    console.log('Back button pressed');
+  }
+
+
   submitTerm() {
     this.appService.getSession().subscribe({
       next: user => {

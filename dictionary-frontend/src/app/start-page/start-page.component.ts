@@ -30,7 +30,9 @@ export class StartPageComponent implements OnInit {
 
   constructor(private router: Router, private appService: AppService) {
     this.letters = new Array<string>()
-    this.fin_terms_list = new Array<TermDTO>()
+    this.tags = []
+    this.fis_teams_list = []
+    this.fin_terms_list = []
     for(var i = 0; i < 26; i++){
       this.letters.push(String.fromCharCode(65 + i)) // 'A' + i
     }
@@ -42,7 +44,6 @@ export class StartPageComponent implements OnInit {
   }
 
   ngAfterViewInit (){
-    this.ClickOnLetter(-1)
     this.onWindowResize()
   }
 
@@ -57,9 +58,6 @@ export class StartPageComponent implements OnInit {
 
     if (window.innerWidth < 767) elem.parentNode.insertBefore(elem, document.getElementById("fin-terms"))
     else elem.parentNode.insertBefore(elem, elem.parentNode.lastChild.nextSibling)
-  }
-
-  ShowTeam(id){
   }
 
   SortAlphabetically(list){
@@ -82,9 +80,9 @@ export class StartPageComponent implements OnInit {
     let map = new Map<string, Array<TermDTO>>();
 
     // filter by start letter
-    if (this.picked_letter != "") {
-      return map.set(this.picked_letter.toUpperCase(), list)
-    }
+    //if (this.picked_letter != "") {
+    //  return map.set(this.picked_letter.toUpperCase(), list)
+    //}
 
     // fill map
     for (let i = 0; i < 26; i++) {
@@ -94,12 +92,22 @@ export class StartPageComponent implements OnInit {
         list.filter((v) =>((<TermDTO>v).title.toLowerCase()[0] == start_letter.toLowerCase()))
       )
     }
-
+/*
     if (this.search_term != ""){
       map.forEach((value: Array<TermDTO>, key: string) => {
         if (map.get(key).length == 0) map.delete(key)
       });
     }
+*/
+    // added
+    // filter by start letter
+    if (this.picked_letter != "") {
+      //map.set(this.picked_letter.toUpperCase(), list)
+      map.forEach((value: Array<TermDTO>, key: string) => {
+        if (map.get(key).length == 0 && this.picked_letter.toUpperCase() != key) map.delete(key)
+      });
+    }
+    // added
 
     // filter by tag
     if (this.picked_tag){
@@ -116,7 +124,7 @@ export class StartPageComponent implements OnInit {
         if (new_value.length > 0) {
           map.set(key, new_value.filter((v) => true))
         }
-        else map.delete(key)
+        else  map.delete(key)
       });
     }
 
@@ -138,7 +146,11 @@ export class StartPageComponent implements OnInit {
         else map.delete(key)
       });
     }
-
+    if (this.search_term != ""){
+      map.forEach((value: Array<TermDTO>, key: string) => {
+        if (map.get(key).length == 0) map.delete(key)
+      });
+    }
     return map
   }
 
@@ -154,15 +166,22 @@ export class StartPageComponent implements OnInit {
   }
 
   ClickOnLetter(i){
-    document.getElementById("show_all").classList.remove("clicked")
+    //document.getElementById("show_all").classList.remove("clicked")
     for (let i = 0; i < 26; i++)
-      (<HTMLElement>document.getElementsByClassName("links")[i]).classList.remove("clicked")
-
+      (<HTMLElement>document.getElementsByClassName("letter")[i]).classList.remove("clicked")
+      //this.picked_letter = ""
       this.picked_letter = ""
+
     if (i == -1) {
-      document.getElementById("show_all").classList.add("clicked")
+        //document.getElementById("show_all").classList.add("clicked")
+        //for (let i = 0; i < 26; i++)
+        //  (<HTMLElement>document.getElementsByClassName("letter")[i]).classList.remove("clicked")
+      this.ClickOnTag(-1)
+      this.ClickOnTeam(-1)
     }
     else if (i >= 0){
+      //for (let i = 0; i < 26; i++)
+      //  (<HTMLElement>document.getElementsByClassName("letter")[i]).classList.remove("clicked")
       this.picked_letter = this.letters[i].toLowerCase()
       document.getElementById("letter_" + i).classList.add("clicked")
     }
@@ -171,8 +190,8 @@ export class StartPageComponent implements OnInit {
   Letter(i){
     //this.Scroll()
     this.ClickOnLetter(i)
-    this.ClickOnTag(-1)
-    this.ClickOnTeam(-1)
+    //this.ClickOnTag(-1)
+    //this.ClickOnTeam(-1)
   }
 
   ClickOnTag(i){
@@ -191,8 +210,8 @@ export class StartPageComponent implements OnInit {
   Tag(i){
     //this.Scroll()
     this.ClickOnTag(i)
-    this.ClickOnLetter(-2)
-    this.ClickOnTeam(-1)
+    //this.ClickOnLetter(-2)
+    //this.ClickOnTeam(-1)
   }
 
   ClickOnTeam(i) {
@@ -210,13 +229,12 @@ export class StartPageComponent implements OnInit {
 
   Team(i) {
     //this.Scroll()
-    this.ClickOnTag(-1)
-    this.ClickOnLetter(-2)
+    //this.ClickOnTag(-1)
+    //this.ClickOnLetter(-2)
     this.ClickOnTeam(i)
   }
 
   NavigateToTerm(term){
-    //term.links = ['https://www.cfainstitute.org/en/programs/investment-foundations/curriculum/download', 'http://www.facebook.com']
     localStorage.setItem("picked_term", JSON.stringify(term))
     this.router.navigate(['/show-term'])
   }
@@ -257,6 +275,7 @@ export class StartPageComponent implements OnInit {
         console.log(this.tags)
         console.log(this.fis_teams_list)
         console.log(this.fin_terms_list)
+        this.ClickOnLetter(-1)
       }
     });
   }
@@ -272,7 +291,7 @@ export class StartPageComponent implements OnInit {
         error: error => {
           this.router.navigate(['/login-page'])
         }
-    }
+      }
     );
   }
 
