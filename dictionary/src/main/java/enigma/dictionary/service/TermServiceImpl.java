@@ -22,8 +22,10 @@ public class TermServiceImpl implements TermService {
 
     @Autowired
     private TermRepository termRepository;
+
     @Autowired
     private TeamService teamService;
+
     @Autowired
     private TagService tagService;
 
@@ -69,12 +71,7 @@ public class TermServiceImpl implements TermService {
             tags.add(a);
         }
 
-        List<Link> links = new ArrayList<Link>();
-        for(String link : termDTO.getLinks()) {
-            Link l = linkService.transformToModel(link, t);
-            links.add(l);
-        }
-        t.setLinks(links);
+
 
         t.setTags(tags);
         t.setTeam(teamService.transformToModel(termDTO.getTeam()));
@@ -82,6 +79,12 @@ public class TermServiceImpl implements TermService {
         if (termRepository.findTermByTitle(t.getTitle())==null){
 
             termRepository.save(t);
+            List<Link> links = new ArrayList<Link>();
+            for(String link : termDTO.getLinks()) {
+                Link l = linkService.transformToModel(link, t);
+                links.add(l);
+            }
+            t.setLinks(links);
             return true;
         }
         else return false;
@@ -114,17 +117,17 @@ public class TermServiceImpl implements TermService {
             tags.add(a);
         }
 
-        List<Link> links = new ArrayList<Link>();
-        for(String link : termDTO.getLinks()) {
-            Link l = linkService.transformToModel(link, term);
-            links.add(l);
-        }
-        term.setLinks(links);
-
         List<Term> checkList=termRepository.findForUpdate(term.getTitle(), term.getTermID());
         if (checkList==null || checkList.size()==0){
-
+            term.getLinks().clear();
             termRepository.save(term);
+
+            List<Link> links = new ArrayList<Link>();
+            for(String link : termDTO.getLinks()) {
+                Link l = linkService.transformToModel(link, term);
+                links.add(l);
+            }
+            term.setLinks(links);
             return true;
         }
         else return false;

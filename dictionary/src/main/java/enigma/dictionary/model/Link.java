@@ -7,7 +7,7 @@ public class Link {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tag_ID;
+    private Long link_ID;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -23,12 +23,12 @@ public class Link {
         this.term = term;
     }
 
-    public Long getTag_ID() {
-        return tag_ID;
+    public Long getLink_ID() {
+        return link_ID;
     }
 
-    public void setTag_ID(Long tag_ID) {
-        this.tag_ID = tag_ID;
+    public void setLink_ID(Long link_ID) {
+        this.link_ID = link_ID;
     }
 
     public String getName() {

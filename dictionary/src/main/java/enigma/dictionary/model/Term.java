@@ -29,7 +29,7 @@ public class Term {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Tag> tags = new ArrayList<>();
 
-    @OneToMany(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
     private List<Link> links = new ArrayList<Link>();
 
     public Term() {

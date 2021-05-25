@@ -8,6 +8,6 @@ import java.util.List;
 public interface LinkService {
 
     public List<Link> getByTermId(Long termId);
-    public boolean deleteByTermId(Long termId);
     public Link transformToModel(String link, Term term);
+
 }

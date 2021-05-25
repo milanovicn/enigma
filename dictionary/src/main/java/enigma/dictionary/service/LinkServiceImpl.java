@@ -28,24 +28,13 @@ public class LinkServiceImpl implements LinkService {
         return ret;
     }
 
-    //ne treba vrv
-    @Override
-    public boolean deleteByTermId(Long termId) {
-        List<Link> linksToDelete = getByTermId(termId);
-        for (Link link : linksToDelete) {
-            linkRepository.delete(link);
-        }
-
-        linksToDelete = getByTermId(termId);
-
-        return linksToDelete.isEmpty();
-    }
 
     @Override
     public Link transformToModel(String link, Term term) {
         Link newLink = new Link();
         newLink.setName(link);
         newLink.setTerm(term);
+        linkRepository.save(newLink);
         return null;
     }
 }
