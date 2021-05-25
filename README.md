@@ -1,4 +1,4 @@
-# FISDictionary
+# FIS Dictionary
 
 
 
@@ -11,7 +11,7 @@ FIS Dictionary represents a web-application first created for InovateIn48 event 
 
 ### Terms
 
-Terms are the main focus of this application. Every FIS employee is free to contribute to FIS Dictionary and share the knowledge by adding new terms. Terms are easily accessible through our dashboard. There are multiple ways to quickly filter FIS Dictionary, including
+Terms are the focus of this application. Every FIS employee is free to contribute to FIS Dictionary and share the knowledge by adding new terms. Terms are easily accessible through our dashboard. There are multiple ways to quickly filter FIS Dictionary, including
 
 - starting letters
 - tags
@@ -29,7 +29,11 @@ Tags are available to be assigned to any term. They allow more efficient search 
 
 ### Links
 
-For every term it's possible to add urls to resources relevant for that specific term. This allows user to continue in-depth investigation on this term, redirected to more comprehensive resources.
+For every term it's possible to add URLs to resources relevant for that specific term. This allows user to continue in-depth investigation on this term, redirected to more comprehensive resources.
+
+## What is FIS Dictionary designed for?
+
+Our application is designed to help our colleagues to easily get familiar with FIS internal terminology and their team’s products, technologies, clients and procedures. It’s main purpose is to give employees basic information and knowledge on wide range of terms. 
 
 
 ## Architecture and Technologies
@@ -43,7 +47,7 @@ For this solution were used Java programming language and TypeScript. Of course,
 
 ## Open source or proprietary software used
 
-No proprietary softwers were used. Open source software that was used includes: Spring Boot framework, Maven, Angular 11 framework, NodeJS and MySQL relational database management system.
+No proprietary software was used. Open source software that was used includes: Spring Boot framework, Maven, Angular 11 framework, NodeJS and MySQL relational database management system.
 
 
 
@@ -58,8 +62,8 @@ Just imagine being a new joiner attending your first meeting full of FinTech ter
 
 ### Our WoW factor 
 
-- As new joinners, ENIGMA team takes huge pride in benefit that this app can bring to persons that are new to FIS culture and proceses in our Company.
-- Simplicity and undemanding use-cases were the next main focus when implementing FIS Dictionary.
+- As new joiners, ENIGMA team takes huge pride in benefit that this app can bring to persons that are new to FIS culture and processes in our Company.
+- Simplicity and undemanding use-cases were the next focus when implementing FIS Dictionary.
 - Effectiveness. As mentioned, navigation through our dashboard is designed to be effective and intuitive.
 - Have you seen our UI?
 
