@@ -4,25 +4,24 @@
   <div class="top-container" id="top-container">
     <div class="top-container-item left">
       <img
-        width="170px"
+        width="230px"
         height="auto"
         alt="FIS Logo"
         src="../assets/fisdictlog.png"
       />
-      <h1>Welcome to FIS Dictionary</h1>
     </div>
     <div class="top-container-item middle">
-      <h2>This is FIS Dictionary</h2>
+      <h2>Welcome to FIS Dictionary</h2>
       <br>
       <h3>Innovate In 48</h3>
       <h3>Enigma team</h3>
     </div>
     <div class="right">
       <div class="top-container-right-item" (click)="NavigateToAddTerm()">
-        <h3><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new term!</h3>
+        <h4><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new term</h4>
       </div>
       <div *ngIf="user.admin" class="top-container-right-item" (click)="NavigateToAddTag()">
-        <h3><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new tag!</h3>
+        <h4><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new tag</h4>
       </div>
     </div>
 
@@ -32,8 +31,8 @@
 
     <div class="filter" id="all_letters">
       <div class="container-name">
-        <h2 style="color: black;">Browse FIS dictionary</h2>
-        <p>Pick a start letter!</p>
+        <!--<h2 style="color: black;">Browse FIS dictionary</h2>-->
+        <p>Pick a start letter</p>
       </div>
       <div class="alphas">
         <div class="links" id="letter_{{i}}" *ngFor = "let letter of letters; index as i" (click)="Letter(i)">
@@ -47,7 +46,7 @@
 
     <div class="filter" id="all_tags">
       <div class="container-name">
-        <p>Pick a tag!</p>
+        <p>Pick a tag</p>
       </div>
 
       <div class="alphas">
@@ -59,8 +58,7 @@
 
     <div class="card-container card finterms" id="fin-terms">
       <div class="container-name">
-        <h2>FIS general terms</h2>
-        <p class="white">Learn terms</p>
+        <h2>All terms</h2>
         <div class="search_class">
           <i class="fa fa-search" style="color: white; padding-right: 10px;"></i>
           <input (keyup)="FinTermsSearch()" id="search_terms_id" type="text"
@@ -75,7 +73,6 @@
         </div>
         <div class="card-small card-finterms" *ngFor = "let term of terms.value" (click)="NavigateToTerm(term)">
           <span>{{term.title}}</span>
-          <!--<div class="details">Details</div>-->
         </div>
       </div>
       <div class="card-container line" *ngIf = "FinTermsSearch().size == 0">
@@ -85,8 +82,8 @@
 
     <div class="card-container card fisteams" id="fis-teams">
       <div class="container-name">
-        <h2>FIS terms per teams</h2>
-        <p class="white">Explore terms used by FIS teams around the globe</p>
+        <!--<h2>FIS terms per teams</h2>-->
+        <p class="white">Filter terms by teams</p>
       </div>
 
       <div class="card-small fis_teams" id=team_{{i}} *ngFor = "let team of fis_teams_list; index as i" (click)="Team(i)">

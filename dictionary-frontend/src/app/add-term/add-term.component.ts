@@ -108,7 +108,8 @@ export class AddTermComponent implements OnInit {
         next: data => {
             if (data["status"] == "true"){
               Modal.insertModal(data["response"])
-              this.router.navigate(['/start-page'])
+              localStorage.setItem("picked_term", JSON.stringify(this.term))
+              this.router.navigate(['/show-term'])
             }
             else if (data["status"] == "false"){
               Modal.insertModal(data["response"])

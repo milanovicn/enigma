@@ -3,25 +3,24 @@
   <div class="top-container" id="top-container">
     <div class="top-container-item left">
       <img
-        width="170px"
+        width="230px"
         height="auto"
         alt="FIS Logo"
         src="../assets/fisdictlog.png"
       />
-      <h1>Welcome to FIS Dictionary</h1>
     </div>
     <div class="top-container-item middle">
-      <h2>This is FIS Dictionary</h2>
+      <h2>Welcome to FIS Dictionary</h2>
       <br>
       <h3>Innovate In 48</h3>
       <h3>Enigma team</h3>
     </div>
     <div class="right">
       <div class="top-container-right-item" (click)="NavigateToAddTerm()">
-        <h3><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new term!</h3>
+        <h4><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new term</h4>
       </div>
       <div *ngIf="user.admin" class="top-container-right-item" (click)="NavigateToAddTag()">
-        <h3><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new tag!</h3>
+        <h4><i class="fa fa-plus-square-o" style="padding-right: 10px;" aria-hidden="true"></i>Add new tag</h4>
       </div>
     </div>
   </div>

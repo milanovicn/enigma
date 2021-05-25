@@ -49,3 +49,10 @@
   flex: 1;
 }
 
+#home-page {
+  width: 100px;
+}
+
+a {
+  font-size: 16px;
+}

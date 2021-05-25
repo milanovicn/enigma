@@ -44,7 +44,10 @@ export class AppComponent implements OnInit{
         );
       }
     });
+  }
 
+  HomePage(){
+    this.router.navigate(['/start-page'])
   }
 
   Show(t){
