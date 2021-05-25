@@ -18,5 +18,6 @@ public interface TermService {
     public boolean createTerm(TermDTO termDTO);
     public boolean deleteTerm(Integer termId);
     public boolean updateTerm(TermDTO termDTO);
+    public void setLinks(boolean isFinancial,Term term, TermDTO termDTO);
 
 }
