@@ -81,18 +81,7 @@ public class TermServiceImpl implements TermService {
         if (termRepository.findTermByTitle(t.getTitle())==null){
 
             termRepository.save(t);
-            List<Link> links = new ArrayList<Link>();
-            String url="";
-            if(isFinancial) {
-                url= "https://www.investopedia.com/search?q="+t.getTitle().toLowerCase(Locale.ROOT).replaceAll("\\s","");
-                Link l= linkService.transformToModel(url, t);
-
-            }
-            for(String link : termDTO.getLinks()) {
-                if(link.equals(url)) continue;
-                Link l = linkService.transformToModel(link, t);
-
-            }
+            setLinks(isFinancial,t,termDTO);
             return true;
         }
         else return false;
@@ -121,9 +110,11 @@ public class TermServiceImpl implements TermService {
         term.setDetails(termDTO.getDetails());
         term.setTitle(termDTO.getTitle());
         term.setTeam(teamService.transformToModel(termDTO.getTeam()));
-        List<Tag> tags = new ArrayList<Tag>();
+        List<Tag> tags = new ArrayList<>();
+        boolean isFinancial=false;
         for(TagDTO tag : termDTO.getTags()) {
             Tag a = tagService.transformToModel(tag);
+            if (a.getTag_ID()==1) isFinancial=true;
             tags.add(a);
         }
         term.setTags(tags);
@@ -132,15 +123,25 @@ public class TermServiceImpl implements TermService {
             term.getLinks().clear();
             termRepository.save(term);
 
-            List<Link> links = new ArrayList<Link>();
-            for(String link : termDTO.getLinks()) {
-                Link l = linkService.transformToModel(link, term);
-                links.add(l);
-            }
-            term.setLinks(links);
+            setLinks(isFinancial,term, termDTO);
             return true;
         }
         else return false;
+    }
+
+    @Override
+    public void setLinks(boolean isFinancial,Term term, TermDTO termDTO) {
+        String url="";
+        if(isFinancial) {
+            url= "https://www.investopedia.com/search?q="+term.getTitle().toLowerCase(Locale.ROOT).replaceAll("\\s","");
+            Link l= linkService.transformToModel(url, term);
+
+        }
+        for(String link : termDTO.getLinks()) {
+            if(link.equals(url)) continue;
+            Link l = linkService.transformToModel(link, term);
+
+        }
     }
 
     @Override
