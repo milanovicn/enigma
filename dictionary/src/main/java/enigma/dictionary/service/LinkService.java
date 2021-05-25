@@ -9,5 +9,6 @@ public interface LinkService {
 
     public List<Link> getByTermId(Long termId);
     public Link transformToModel(String link, Term term);
+    public boolean deleteLinkByTermId(Integer termId);
 
 }

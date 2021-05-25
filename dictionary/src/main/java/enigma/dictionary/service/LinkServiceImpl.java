@@ -37,4 +37,11 @@ public class LinkServiceImpl implements LinkService {
         linkRepository.save(newLink);
         return null;
     }
+
+    @Override
+    public boolean deleteLinkByTermId(Integer termId) {
+
+        linkRepository.deleteLinkByTermId(termId.longValue());
+        return true;
+    }
 }

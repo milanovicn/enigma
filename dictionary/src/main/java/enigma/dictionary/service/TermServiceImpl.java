@@ -93,8 +93,10 @@ public class TermServiceImpl implements TermService {
 
     @Override
     public boolean deleteTerm(Integer termId) {
-        if(termRepository.findTermById(termId.longValue()) != null)
+        if(termRepository.findTermById(termId.longValue()) != null) {
+            linkService.deleteLinkByTermId(termId);
             termRepository.deleteTermById(termId.longValue());
+        }
         else
             return false;
         if(termRepository.findTermById(termId.longValue()) == null){
