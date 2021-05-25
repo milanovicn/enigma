@@ -3,6 +3,7 @@ package enigma.dictionary.service;
 import enigma.dictionary.dto.TagDTO;
 import enigma.dictionary.dto.TeamDTO;
 import enigma.dictionary.dto.TermDTO;
+import enigma.dictionary.model.Link;
 import enigma.dictionary.model.Tag;
 import enigma.dictionary.model.Team;
 import enigma.dictionary.model.Term;
@@ -28,6 +29,9 @@ public class TermServiceImpl implements TermService {
 
     @Autowired
     private EntityManager em;
+
+    @Autowired
+    private LinkService linkService;
 
     @Override
     public List<Term> getAll() {
@@ -64,6 +68,14 @@ public class TermServiceImpl implements TermService {
             Tag a = tagService.transformToModel(tag);
             tags.add(a);
         }
+
+        List<Link> links = new ArrayList<Link>();
+        for(String link : termDTO.getLinks()) {
+            Link l = linkService.transformToModel(link, t);
+            links.add(l);
+        }
+        t.setLinks(links);
+
         t.setTags(tags);
         t.setTeam(teamService.transformToModel(termDTO.getTeam()));
         t.setTitle(termDTO.getTitle());
@@ -102,6 +114,13 @@ public class TermServiceImpl implements TermService {
             tags.add(a);
         }
 
+        List<Link> links = new ArrayList<Link>();
+        for(String link : termDTO.getLinks()) {
+            Link l = linkService.transformToModel(link, term);
+            links.add(l);
+        }
+        term.setLinks(links);
+
         List<Term> checkList=termRepository.findForUpdate(term.getTitle(), term.getTermID());
         if (checkList==null || checkList.size()==0){
 
@@ -115,6 +134,10 @@ public class TermServiceImpl implements TermService {
     public TermDTO transformToDTO(Term term) {
         TeamDTO teamDTO = teamService.transformToDTO(term.getTeam());
         TermDTO termDTO = new TermDTO(term.getTermID(),term.getTitle(), term.getDescription(), term.getDetails(), teamDTO);
+
+        for (Link link : term.getLinks()){
+            termDTO.getLinks().add(link.getName());
+        }
 
         for (Tag t:term.getTags()) {
             termDTO.getTags().add(tagService.transformToDTO(t));

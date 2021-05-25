@@ -17,10 +17,10 @@ public class Term {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "description", nullable = false, length = 30000)
+    @Column(name = "description", nullable = false, length = 6000)
     private String description;
 
-    @Column(name = "details", nullable = false, length = 30000)
+    @Column(name = "details", nullable = false, length = 6000)
     private String details;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -28,6 +28,9 @@ public class Term {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Tag> tags = new ArrayList<>();
+
+    @OneToMany(mappedBy = "term", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Link> links = new ArrayList<Link>();
 
     public Term() {
     }
@@ -89,4 +92,11 @@ public class Term {
         this.tags = tags;
     }
 
+    public List<Link> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<Link> links) {
+        this.links = links;
+    }
 }
