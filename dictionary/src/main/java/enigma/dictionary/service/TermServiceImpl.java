@@ -101,7 +101,7 @@ public class TermServiceImpl implements TermService {
             Tag a = tagService.transformToModel(tag);
             tags.add(a);
         }
-
+        term.setTags(tags);
         List<Term> checkList=termRepository.findForUpdate(term.getTitle(), term.getTermID());
         if (checkList==null || checkList.size()==0){
 
