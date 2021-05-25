@@ -9,6 +9,7 @@ public class TermDTO {
     private String details;
     private TeamDTO team;
     private List<TagDTO> tags = new ArrayList<TagDTO>();
+    private List<String> links = new ArrayList<String>();
 
 
     public TermDTO(Long term_ID, String title, String description, String details, TeamDTO team) {
@@ -62,4 +63,11 @@ public class TermDTO {
         this.tags = tags;
     }
 
+    public List<String> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<String> links) {
+        this.links = links;
+    }
 }
