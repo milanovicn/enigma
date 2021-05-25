@@ -6,6 +6,7 @@ import { Component, HostListener } from "@angular/core";
 export class Modal{
 
   static insertModal(message: string) {
+    if (document.getElementById('myModal')) return
     let htmlcode =
     ('<div id="myModal" class="modal" style="height: 100%; width: 100%; display:block; background-color: rgba(0,0,0,0.4);">'
     +'<div class="modal-content" style="border-radius:0; padding: 20px; background-color: white; width: 300px; margin:auto;">'
