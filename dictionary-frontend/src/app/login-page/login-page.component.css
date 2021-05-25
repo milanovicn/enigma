@@ -66,6 +66,7 @@ label{
 .right {
   padding: 0 20px;
   width: 70%;
+
 }
 
 #main-card-container {
@@ -145,7 +146,6 @@ footer a {
   display: flex;
   align-items: center;
 }
-
 
 
 /* Responsive Styles */

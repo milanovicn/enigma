@@ -174,7 +174,8 @@ label{
   width: 50%;
 }
 
-.tag:hover {
+.tag:hover, .link:hover
+ {
   border: 1px solid #08283a;
   background-color: #08283a;
   color: white;

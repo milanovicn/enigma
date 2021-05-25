@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Modal } from '../modal';
 import { TagDTO } from '../_shared/dto/TagDTO';
 import { TermDTO } from '../_shared/dto/TermDTO';
 import { AppService } from '../_shared/services/appService.service';
@@ -36,6 +37,13 @@ export class AddTagComponent implements OnInit {
     document.getElementById("content").style.minHeight = window.innerHeight - this.height + "px";
   }
 
+  @HostListener('click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (event.target == document.getElementById("myModal") || event.target == document.getElementById("closeId")){
+      Modal.removeModal()
+    }
+  }
+
   SaveTag(){
     if (!this.tag_name){
       return // all fields are required
@@ -46,11 +54,11 @@ export class AddTagComponent implements OnInit {
       {
         next: data => {
             if (data["status"] == "true"){
-              alert(data["response"])
-              this.router.navigate(['/start-page'])
+              Modal.insertModal(data["response"])
+              this.tag_name = ""
             }
             else if (data["status"] == "false"){
-              alert(data["response"])
+              Modal.insertModal(data["response"])
             }
         },
         error: error => {
@@ -60,14 +68,6 @@ export class AddTagComponent implements OnInit {
     );
   }
 
-  alertError(){
-    alert("Wrong credentials! Try again")
-  }
-
-  alertSuccess() {
-    alert("Term added!")
-    this.router.navigate(['/start-page'])
-  }
   getUser() {
     this.appService.getSession().subscribe(
       result => {},
